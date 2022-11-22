@@ -8,7 +8,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="https://images.unsplash.com/photo-1668763263612-24fe81663e8a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="First slide">
+                <img class="d-block w-100 img-fluid" src="https://images.unsplash.com/photo-1668763263612-24fe81663e8a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Title 1</h5>
                     <p>Description 1</p>

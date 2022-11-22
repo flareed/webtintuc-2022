@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-center">
-                <img src="../assets/logo1.png" alt="logo">
+                <img src="../assets/logo1.png" class="img-fluid" alt="logo">
             </div>
             <div class="col">
                 <div class="row py-auto">

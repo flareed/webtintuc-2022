@@ -3,7 +3,7 @@
     <div class="row ml-3 mb-4 ">
         <div class="row py-3 border-bottom">
             <div class="col-5">
-                <img :src="content[0].img" :alt="content[0].title" width="200" height="133.33">
+                <img :src="content[0].img" class="img-fluid" :alt="content[0].title" width="200" height="133.33">
             </div>
             <div class="col">
                 <div class="row">

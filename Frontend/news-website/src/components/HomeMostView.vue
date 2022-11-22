@@ -4,7 +4,7 @@
             <div class="col pr-4 border-right border-dark">
                 <div class="row">
                     <div class="col">
-                        <img src="https://images.unsplash.com/photo-1668613964763-90d0bd6559f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="Girl in a jacket" width="400" height="267">
+                        <img src="https://images.unsplash.com/photo-1668613964763-90d0bd6559f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" class="img-fluid" alt="Girl in a jacket" width="400" height="267">
                     </div>
                     <div class="col">
                         <div class="row">
