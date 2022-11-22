@@ -2,10 +2,17 @@
     <div class="row">
         <h5>Tin mới nhất</h5>
     </div>
-    <NewCard :img="this.img" :title="this.title" :description="this.description"/>
-    <NewCard :img="this.img" :title="this.title" :description="this.description"/>
-    <NewCard :img="this.img" :title="this.title" :description="this.description"/>
-        
+    <div class="mr-3">
+        <NewCard :img="this.img" :title="this.title" :description="this.description" />
+        <NewCard :img="this.img" :title="this.title" :description="this.description" />
+        <NewCard :img="this.img" :title="this.title" :description="this.description" />
+        <NewCard :img="this.img" :title="this.title" :description="this.description" />
+        <NewCard :img="this.img" :title="this.title" :description="this.description" />
+        <NewCard :img="this.img" :title="this.title" :description="this.description" />
+        <NewCard :img="this.img" :title="this.title" :description="this.description" />
+    </div>
+
+
 </template>
     
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="row py-3 mr-3 border-bottom border-dark">
+    <div class="row py-3 border-bottom border-dark">
         <div class="col-5">
             <img :src=img :alt=title width="200" height="133.33">
         </div>
@@ -11,12 +11,6 @@
                 <p>{{description}}</p>
             </div>
         </div>
-        <!-- <div class="col-5" style="background-color: aquamarine;">
-            bla
-        </div>
-        <div class="col" style="background-color: red;">
-            bla
-        </div> -->
     </div>
 </template>
     
