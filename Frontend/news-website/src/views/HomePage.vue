@@ -4,7 +4,7 @@
   </header>
 
   <nav>
-    <HomeNavBar />
+    <HomeNavBar slug="home"/>
   </nav>
 
   <main>
@@ -26,7 +26,6 @@
       <div class="mt-4">
         <HomePicsShow />
       </div>
-
     </div>
   </main>
 

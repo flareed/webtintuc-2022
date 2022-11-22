@@ -1,0 +1,56 @@
+{
+    "categories": [
+        {
+            "name": "Thời sự",
+            "slug": "thoi-su"
+        },
+        {
+            "name": "Thế giới",
+            "slug": "the-gioi"
+        },
+        {
+            "name": "Đời sống",
+            "slug": "doi-song"
+        },
+        {
+            "name": "Kinh doanh",
+            "slug": "kinh-doanh"
+        },
+        {
+            "name": "Khoa học",
+            "slug": "khoa-hoc"
+        },
+        {
+            "name": "Giải trí",
+            "slug": "giai-tri"
+        },
+        {
+            "name": "Thể thao",
+            "slug": "the-thao"
+        },
+        {
+            "name": "Pháp luật",
+            "slug": "phap-luat"
+        },
+        {
+            "name": "Sức khoẻ",
+            "slug": "suc-khoe"
+        },
+        {
+            "name": "Du lịch",
+            "slug": "du-lich"
+        },
+        {
+            "name": "Số hoá",
+            "slug": "so-hoa"
+        },
+        {
+            "name": "Xe",
+            "slug": "xe"
+        },
+        {
+            "name": "Môi trường",
+            "slug": "moi-truong"
+        }
+    ]
+}
