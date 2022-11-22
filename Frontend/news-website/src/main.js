@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css"
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from '@/routers'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -15,6 +16,9 @@ import {faFacebook, faTwitter, faYoutube} from '@fortawesome/free-brands-svg-ico
 /* add icons to the library */
 library.add(faUserSecret, faCircleUser, faMagnifyingGlass, faList, faFacebook, faTwitter, faYoutube)
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App)
+.component('font-awesome-icon', FontAwesomeIcon)
+.use(router)
+.mount('#app')
 
 import "bootstrap/dist/js/bootstrap.js"

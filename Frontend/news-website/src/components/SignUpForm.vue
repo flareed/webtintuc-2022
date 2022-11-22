@@ -26,15 +26,11 @@
                 By creating an account, you agree to the <u>Terms of Service</u> and acknowledge our <u>Privacy Policy</u>.
             </small>
 
-
             <button type="submit" class="btn btn-dark btn-block mt-2">Tạo tài khoản</button>
-            <button type="button" class="btn btn-light btn-block border border-dark">
+            <a href="/login" class="btn btn-light btn-block border border-dark">
                 <small>Đã có tài khoản, đăng nhập tại đây</small>
-            </button>
+            </a>
         </form>
-
-        
-
     </div>
 </template>
     

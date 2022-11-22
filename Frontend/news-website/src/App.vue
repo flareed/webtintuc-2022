@@ -1,19 +1,20 @@
 <template>
   <!-- <HomePage /> -->
-  <LoginPage />
+  <!-- <LoginPage /> -->
   <!-- <SignUpPage /> -->
+  <RouterView/>
 </template>
 
 <script>
 // import HomePage from './views/HomePage.vue'
-import LoginPage from "./views/LoginPage.vue";
+// import LoginPage from "./views/LoginPage.vue";
 // import SignUpPage from "./views/SignUpPage.vue";
 
 export default {
   name: 'App',
   components: {
     // HomePage,
-    LoginPage,
+    // LoginPage,
     // SignUpPage
   }
 }

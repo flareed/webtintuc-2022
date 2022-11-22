@@ -19,9 +19,12 @@
 
 
             <button type="submit" class="btn btn-dark btn-block">Đăng nhập</button>
-            <button type="button" class="btn btn-light btn-block border border-dark">
+            <a href="/signup" class="btn btn-light btn-block border border-dark">
                 <small>Không có tài khoản, đăng ký tại đây</small>
-            </button>
+            </a>
+            <!-- <button type="button" class="btn btn-light btn-block border border-dark">
+                <small>Không có tài khoản, đăng ký tại đây</small>
+            </button> -->
         </form>
 
         
