@@ -77,7 +77,7 @@ span :deep(img){
     height: 511px;
 }
 
-:deep p{
+span :deep p{
     font-size: 18px;
 }
 </style>
