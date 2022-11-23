@@ -4,18 +4,24 @@
     </header>
 
     <nav>
-        <HomeNavBar :slug="category.slug"/>
+        <HomeNavBar slug="bla" />
     </nav>
 
     <main>
-        <div class="container py-2">
-            <h3>{{ category.name }}</h3>
+        <div class="container py-2 px-4 mt-4">
             <div class="row">
-                <div class="col-6">
-                    <NewCard :img="this.img" :title="this.title" :description="this.description" />
-                    <NewCard :img="this.img" :title="this.title" :description="this.description" />
-                    <NewCard :img="this.img" :title="this.title" :description="this.description" />
+                <div class="col">
+                    <h6>{{ article.tag }}</h6>
                 </div>
+                <div class="col">
+                    <h6 class="float-right">{{ article.date }}</h6>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <h2>{{ article.title }}</h2>
+            </div>
+            <div class="row">
+                <span class="content-style" v-html="article.content"></span>
             </div>
         </div>
     </main>
@@ -29,16 +35,16 @@
 import HomeHeader from '../components/HomeHeader.vue';
 import HomeNavBar from '../components/HomeNavBar.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
-import NewCard from '@/components/NewCard.vue';
-import sourceData from '@/components/store/data_routes.json'
+// import NewCard from '@/components/NewCard.vue';
+import articleData from '@/components/store/data_article.json';
 
 export default {
-    name: 'CategoryPage',
+    name: 'DetailPage',
     components: {
         HomeHeader,
         HomeNavBar,
         HomeFooter,
-        NewCard,
+        // NewCard,
     },
     data() {
         return {
@@ -48,14 +54,16 @@ export default {
         }
     },
     props: {
-        id: { type: String, required: true },
+        section: { type: String, required: true },
+        name: { type: String, required: true },
     },
     computed: {
-        category() {
-            // console.log(this.id)
-            return sourceData.categories.find(
-                (destination) => destination.slug === this.id
-            );
+        // category() {
+        //     console.log(this.section)
+        //     console.log(this.id)
+        // }
+        article(){
+            return articleData
         }
     }
 }
@@ -64,5 +72,13 @@ export default {
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+span :deep(img){
+    width: 900px;
+    height: 511px;
+}
+
+:deep p{
+    font-size: 18px;
+}
 </style>
   

@@ -21,7 +21,7 @@
 </template>
     
 <script>
-import sourceData from '@/data_routes.json'
+import sourceData from '../components/store/data_routes.json'
 export default {
     name: 'HomeNavBar',
     props:{
