@@ -4,7 +4,7 @@
   </header>
 
   <nav>
-    <HomeNavBar />
+    <HomeNavBar slug="home"/>
   </nav>
 
   <main>
@@ -17,16 +17,15 @@
           <HomeLatestNews />
         </div>
         <div class="col">
-          <HomeCategoryNews category="Thể thao" />
-          <HomeCategoryNews category="Giáo dục" />
-          <HomeCategoryNews category="Du lịch" />
-          <HomeCategoryNews category="Số hoá" />
+          <HomeCategoryNews section="Thể thao" />
+          <HomeCategoryNews section="Giải trí" />
+          <HomeCategoryNews section="Du lịch" />
+          <HomeCategoryNews section="Số hoá" />
         </div>
       </div>
       <div class="mt-4">
         <HomePicsShow />
       </div>
-
     </div>
   </main>
 

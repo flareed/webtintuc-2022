@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-center">
-                <img src="../assets/logo1.png" alt="logo">
+                <img src="../assets/logo_header.png" class="img-fluid" alt="logo">
             </div>
             <div class="col">
                 <div class="row py-auto">
@@ -30,7 +30,7 @@
                         </h4>
                     </div>
                         <div class="my-2 float-right">
-                            <a class="text-dark" href="">Đăng nhập</a>
+                            <a class="text-dark" href="/login">Đăng nhập</a>
                         </div>
                 </div>
             </div>
