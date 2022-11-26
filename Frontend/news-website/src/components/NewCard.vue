@@ -1,5 +1,5 @@
 <template>
-    <a :href="`/${this.section}/${title}`">
+    <a :href="`/${section}/${title}`">
         <div class="row py-3 border-bottom border-dark text-dark">
             <div class="col-5">
                 <img :src=img class="img-fluid" :alt=title width="200" height="133.33">

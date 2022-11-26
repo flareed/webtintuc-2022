@@ -26,7 +26,7 @@ const routes = [
         path: '/:section/:name',
         name: 'article',
         component: () => import('../views/DetailPage.vue'),
-        props: route=> ({...route.params, section: route.params.id, name: route.params.name}),
+        props: route=> ({...route.params, section: route.params.section, name: route.params.name}),
         beforeEnter(to) {
             const exists = sourceData.categories.find(
                 destination => destination.slug === to.params.section
@@ -37,13 +37,13 @@ const routes = [
         },
     },
     {
-        path: '/:id',
+        path: '/:section',
         name: 'Category',
         component: () => import('../views/CategoryPage.vue'),
-        props: route=> ({...route.params, id: route.params.id}),
+        props: route=> ({...route.params, section: route.params.section}),
         beforeEnter(to) {
             const exists = sourceData.categories.find(
-                destination => destination.slug === to.params.id
+                destination => destination.slug === to.params.section
             )
             if (!exists) return {
                 name: 'not-found',

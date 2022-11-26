@@ -1,7 +1,8 @@
 <template>
-    <h5>{{ category }}</h5>
+    <h5>{{ section }}</h5>
     <div class="row ml-3 mb-4 ">
-        <div class="row py-3 border-bottom">
+        <a :href="`/${sectionSlug}/${content[0].title}`" class="text-dark">
+            <div class="row py-3 border-bottom">
             <div class="col-5">
                 <img :src="content[0].img" class="img-fluid" :alt="content[0].title" width="200" height="133.33">
             </div>
@@ -14,28 +15,32 @@
                 </div>
             </div>
         </div>
+        </a>
+        
         <div class="row h-100 py-3 border-bottom border-dark">
-            <div class="col">
+            <a :href="`/${sectionSlug}/${content[1].title}`" class="col text-dark">
                 <h6>{{ content[1].title }}</h6>
-            </div>
-            <div class="col border-left border-right">
+            </a>
+            <a :href="`/${sectionSlug}/${content[2].title}`" class="col border-left border-right text-dark">
                 <h6>{{ content[2].title }}</h6>
-            </div>
-            <div class="col">
+            </a>
+            <a :href="`/${sectionSlug}/${content[3].title}`" class="col text-dark">
                 <h6>{{ content[3].title }}</h6>
-            </div>
+            </a>
         </div>
 
     </div>
 </template>
     
 <script>
+import sourceData from '@/components/store/data_routes.json'
+
 export default {
     name: 'HomeCategoryNews',
     components: {
     },
     props: {
-        category: String
+        section: String
     },
     data() {
         return {
@@ -62,11 +67,21 @@ export default {
                 }
             ]
         }
+    },
+    computed: {
+        sectionSlug() {
+            return sourceData.categories.find(
+                (destination) => destination.name === this.section
+            ).slug;
+
+        }
     }
 }
 </script>
     
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+a {
+    text-decoration: none;
+}
 </style>

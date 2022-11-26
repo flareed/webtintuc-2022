@@ -48,13 +48,13 @@ export default {
         }
     },
     props: {
-        id: { type: String, required: true },
+        section: { type: String, required: true },
     },
     computed: {
         category() {
             // console.log(this.id)
             return sourceData.categories.find(
-                (destination) => destination.slug === this.id
+                (destination) => destination.slug === this.section
             );
         }
     }

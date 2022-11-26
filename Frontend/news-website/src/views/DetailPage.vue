@@ -4,11 +4,11 @@
     </header>
 
     <nav>
-        <HomeNavBar slug="bla" />
+        <HomeNavBar :slug=this.section />
     </nav>
 
     <main>
-        <div class="container py-2 px-4 mt-4">
+        <div class="container py-2 px-4 mt-4" style="max-width: 65%">
             <div class="row">
                 <div class="col">
                     <h6>{{ article.tag }}</h6>
@@ -19,6 +19,12 @@
             </div>
             <div class="row mt-4">
                 <h2>{{ article.title }}</h2>
+            </div>
+            <div class="row mt-4">
+                <span>
+                    <p>{{ article.description }}</p>
+                </span>
+
             </div>
             <div class="row">
                 <span class="content-style" v-html="article.content"></span>
@@ -62,7 +68,8 @@ export default {
         //     console.log(this.section)
         //     console.log(this.id)
         // }
-        article(){
+        article() {
+            console.log(this.section)
             return articleData
         }
     }
@@ -71,13 +78,15 @@ export default {
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-span :deep(img){
-    width: 900px;
-    height: 511px;
+span :deep(img) {
+    width: 80%;
+    /* height: 70%; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-span :deep p{
+span :deep p {
     font-size: 18px;
 }
 </style>

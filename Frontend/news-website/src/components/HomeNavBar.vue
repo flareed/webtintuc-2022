@@ -12,7 +12,7 @@
             <div class="col">
                 <div class="row h-100">
                     <div v-for="item in categories" :key="item.name" class="my-auto mr-auto"> 
-                        <a class="font-weight-bold" :href=item.slug :class="{ 'text-primary': this.slug === item.slug, 'text-dark': this.slug !== item.slug}">{{ item.name }}</a>
+                        <a :href="`/${item.slug}`" class="font-weight-bold"  :class="{ 'text-primary': this.slug === item.slug, 'text-dark': this.slug !== item.slug}">{{ item.name }}</a>
                     </div>
                 </div>
             </div>
@@ -22,6 +22,7 @@
     
 <script>
 import sourceData from '../components/store/data_routes.json'
+
 export default {
     name: 'HomeNavBar',
     props:{
@@ -31,7 +32,16 @@ export default {
         return {
             categories: sourceData.categories
         }
+    },
+    methods: {
+        onClickHomeButton(){
+            this.$router.push('/')
+        },
+        onClickItem(item){
+            this.$router.push(item)
+        }
     }
+    
 }
 </script>
     
