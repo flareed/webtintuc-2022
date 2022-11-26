@@ -73,7 +73,6 @@ export default {
             return sourceData.categories.find(
                 (destination) => destination.name === this.section
             ).slug;
-
         }
     }
 }
