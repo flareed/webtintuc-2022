@@ -8,28 +8,76 @@
     </nav>
 
     <main>
-        <div class="container py-2 px-4 mt-4" style="max-width: 65%">
+        <div class="container mt-4 mb-4" style="max-width: 70%">
             <div class="row">
                 <div class="col">
-                    <h6>{{ article.tag }}</h6>
+                    <h6 class="font-weight-bold text-uppercase">{{ article.tag }}</h6>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <h1>{{ article.title }}</h1>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <span>
+                        <h5><em>{{ article.description }}</em></h5>
+                    </span>
+                </div>
+            </div>
+            <div class="row my-4 border-bottom">
+                <div class="col">
+                    <div class="row">
+                        <h6 class="col-1">
+                            <font-awesome-icon icon="fa-regular fa-share-from-square" />
+                        </h6>
+                        <h6 class="col-1">
+                            <font-awesome-icon icon="fa-regular fa-bookmark" />
+                        </h6>
+                        <h6 class="col-1">
+                            <font-awesome-icon icon="fa-regular fa-comment" />
+                        </h6>
+                    </div>
                 </div>
                 <div class="col">
                     <h6 class="float-right">{{ article.date }}</h6>
                 </div>
             </div>
-            <div class="row mt-4">
-                <h2>{{ article.title }}</h2>
-            </div>
-            <div class="row mt-4">
-                <span>
-                    <p>{{ article.description }}</p>
-                </span>
-
+            <div class="row">
+                <div class="col">
+                    <span v-html="article.content"></span>
+                </div>
             </div>
             <div class="row">
-                <span class="content-style" v-html="article.content"></span>
+                <div class="col">
+                </div>
+                <div class="col-md-auto">
+                    <h6 class="border rounded p-3">
+                        <font-awesome-icon icon="fa-solid fa-feather" />
+                        <span class="ml-2">{{ article.author }}</span>
+                    </h6>
+                </div>
+            </div>
+            <div class="border-bottom border-dark mt-4">
+                <h5>Ý KIẾN</h5>
+            </div>
+            <div class="form-group mt-4">
+                <div class="input-group">
+                    <textarea class="form-control" id="opinion" rows="2" placeholder="Ý kiến của bạn" ref="opinion"></textarea>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" @click="onClick()">Gửi</button>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="mx-2" v-for="item in this.comments" :key="item.username">
+                <CommentCard :username=item.username :content=item.content :like=item.like />
             </div>
         </div>
+
+
     </main>
 
     <footer>
@@ -43,6 +91,7 @@ import HomeNavBar from '../components/HomeNavBar.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
 // import NewCard from '@/components/NewCard.vue';
 import articleData from '@/components/store/data_article.json';
+import CommentCard from '@/components/CommentCard.vue';
 
 export default {
     name: 'DetailPage',
@@ -50,26 +99,41 @@ export default {
         HomeHeader,
         HomeNavBar,
         HomeFooter,
+        CommentCard,
         // NewCard,
     },
     data() {
         return {
-            img: "https://images.unsplash.com/photo-1668405409882-0b3a8b6fc912?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-            title: "Musk dự kiến sa thải gần 4.000 nhân viên Twitter",
-            description: "Elon Musk được cho là đang chuẩn bị cho việc sa thải một nửa số nhân viên Twitter ngay trong tuần này."
+            comments: [
+                {
+                    "username": "Nguyễn Văn A",
+                    "content": "She had a terrible habit o comparing her life to others. She realized that their life experiences were completely different than her own and that she saw only what they wanted her to see, but that didn't matter. She still compared herself and yearned for what she thought they had and she didn't.",
+                    "like": 10
+                },
+                {
+                    "username": "Nguyễn Văn B",
+                    "content": "Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it.",
+                    "like": 6
+                },
+                {
+                    "username": "Nguyễn Văn C",
+                    "content": "She glanced up into the sky to watch the clouds taking shape. First, she saw a dog. Next, it was an elephant. Finally, she saw a giant umbrella and at that moment the rain began to pour.",
+                    "like": 0
+                }
+            ]
         }
     },
     props: {
         section: { type: String, required: true },
         name: { type: String, required: true },
     },
+    methods: {
+        onClick(){
+            console.log(this.$refs.opinion.value)
+        }
+    },
     computed: {
-        // category() {
-        //     console.log(this.section)
-        //     console.log(this.id)
-        // }
         article() {
-            console.log(this.section)
             return articleData
         }
     }
@@ -87,7 +151,7 @@ span :deep(img) {
 }
 
 span :deep p {
-    font-size: 18px;
+    font-size: 1.1rem;
 }
 </style>
   

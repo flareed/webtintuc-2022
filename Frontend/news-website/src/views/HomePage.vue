@@ -4,7 +4,7 @@
   </header>
 
   <nav>
-    <HomeNavBar slug="home"/>
+    <HomeNavBar slug="home" />
   </nav>
 
   <main>
@@ -30,7 +30,7 @@
   </main>
 
   <footer>
-    <HomeFooter/>
+    <HomeFooter />
   </footer>
 </template>
 
@@ -53,8 +53,9 @@ export default {
     HomeCategoryNews,
     HomePicsShow,
     HomeFooter
-  },
+  }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
