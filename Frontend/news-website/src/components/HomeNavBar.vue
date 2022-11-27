@@ -1,12 +1,11 @@
 <template>
     <div class="container-fluid nav-scroller border-top border-bottom border-dark mb-2" ref="navbar" style="background-color: white !important;">
-        <div class="row h-100 py-1 px-4">
+        <div class="row h-100 py-2 px-4">
             <div class="col-1">
                 <h6 class="my-auto">
                     <a href="/" :class="{ 'text-primary': this.slug === 'home', 'text-dark': this.slug !== 'home' }">
                         <font-awesome-icon icon="fa-solid fa-house" />
                     </a>
-
                 </h6>
             </div>
             <div class="col">
@@ -37,7 +36,7 @@ export default {
     methods: {
         handleScroll(event) {
             var sticky = this.$refs.navbar.offsetTop
-            console.log(event.target.documentElement.scrollTop)
+            // console.log(event.target.documentElement.scrollTop)
             if (event.target.documentElement.scrollTop >= sticky) {
                 this.$refs.navbar.classList.add("sticky")
             }
