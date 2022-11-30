@@ -3,7 +3,7 @@
         <div class="row px-4">
             <div class="col">
                 <div class="row">
-                    <div class="font-weight-bold">Thứ 5, 17/11/2022</div>
+                    <div class="font-weight-bold">{{ getDate }}</div>
                 </div>
                 <div class="row">
                     <div>Tin tức hôm nay</div>
@@ -29,9 +29,9 @@
                             <font-awesome-icon icon="fa-solid fa-circle-user" />
                         </h4>
                     </div>
-                        <div class="my-2 float-right">
-                            <a class="text-dark" href="/login">Đăng nhập</a>
-                        </div>
+                    <div class="my-2 float-right">
+                        <a class="text-dark" href="/login">Đăng nhập</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,8 +39,24 @@
 </template>
     
 <script>
+
 export default {
     name: 'HomeHeader',
+    computed: {
+        getDate() {
+            const date = new Date();
+
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+
+            const weekday = ["Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy"];
+            let dayOfWeek = weekday[date.getDay()];
+
+            let currentDate = `${dayOfWeek}, ${day}/${month}/${year}`
+            return currentDate
+        }
+    }
 }
 </script>
     
