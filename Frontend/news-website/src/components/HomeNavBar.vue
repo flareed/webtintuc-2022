@@ -1,22 +1,27 @@
 <template>
-    <div class="container-fluid nav-scroller border-top border-bottom border-dark mb-2" ref="navbar" style="background-color: white !important;">
-        <div class="row h-100 py-2 px-4">
-            <div class="col-1">
-                <h6 class="my-auto">
-                    <a href="/" :class="{ 'text-primary': this.slug === 'home', 'text-dark': this.slug !== 'home' }">
-                        <font-awesome-icon icon="fa-solid fa-house" />
-                    </a>
-                </h6>
+    <div class="container-fluid border-top border-bottom border-dark mb-2" ref="navbar"
+        style="background-color: white !important;">
+        <div class="row h-100">
+            <div class="col-1 my-auto ms-2">
+                <a href="/"
+                    :class="{ 'text-primary': this.slug === 'home', 'text-dark': this.slug !== 'home' }">
+                    <font-awesome-icon icon="fa-solid fa-house" />
+                </a>
             </div>
             <div class="col">
-                <div class="row h-100">
-                    <div v-for="item in categories" :key="item.name" class="my-auto mr-auto">
-                        <a :href="`/${item.slug}`" class="font-weight-bold"
-                            :class="{ 'text-primary': this.slug === item.slug, 'text-dark': this.slug !== item.slug }">{{item.name}}</a>
+                <ul class="nav nav-fill">
+                    <div v-for="item in categories" :key="item.name">
+                        <li class="nav-item">
+                            <a :href="`/${item.slug}`" class="fw-bold nav-link"
+                                :class="{ 'text-primary': this.slug === item.slug, 'text-dark': this.slug !== item.slug }">{{
+                                        item.name
+                                }}</a>
+                        </li>
                     </div>
-                </div>
+                </ul>
             </div>
         </div>
+
     </div>
 </template>
     
@@ -59,13 +64,13 @@ export default {
 <style scoped>
 a:hover {
     color: #0275d8 !important;
-    text-decoration: none;
-}
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
+    text-decoration: none !important;
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
 </style>

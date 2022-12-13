@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-// import LoginPage from './views/LoginPage.vue'
-// import SignUpPage from './views/LoginPage.vue'
 import HomePage from '../views/HomePage.vue';
 import sourceData from '../components/store/data_routes.json'
 

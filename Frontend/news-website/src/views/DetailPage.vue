@@ -11,7 +11,7 @@
         <div class="container mt-4 mb-4" style="max-width: 70%">
             <div class="row">
                 <div class="col">
-                    <h6 class="font-weight-bold text-uppercase">{{ article.tag }}</h6>
+                    <h6 class="fw-bold text-uppercase">{{ article.tag }}</h6>
                 </div>
             </div>
             <div class="row mt-4">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <h6 class="float-right">{{ article.date }}</h6>
+                    <h6 class="float-end">{{ article.date }}</h6>
                 </div>
             </div>
             <div class="row">
@@ -55,7 +55,7 @@
                 <div class="col-md-auto">
                     <h6 class="border rounded p-3">
                         <font-awesome-icon icon="fa-solid fa-feather" />
-                        <span class="ml-2">{{ article.author }}</span>
+                        <span class="ms-2">{{ article.author }}</span>
                     </h6>
                 </div>
             </div>
@@ -65,9 +65,7 @@
             <div class="form-group mt-4">
                 <div class="input-group">
                     <textarea class="form-control" id="opinion" rows="2" placeholder="Ý kiến của bạn" ref="opinion"></textarea>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" @click="onClick()">Gửi</button>
-                    </div>
+                    <button class="btn btn-outline-secondary" type="button" @click="onClick()">Gửi</button>
                 </div>
 
             </div>

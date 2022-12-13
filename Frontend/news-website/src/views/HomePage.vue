@@ -13,7 +13,7 @@
         <HomeMostView />
       </div>
       <div class="row mt-4">
-        <div class="col border-right border-dark">
+        <div class="col border-end border-dark">
           <HomeLatestNews />
         </div>
         <div class="col">
