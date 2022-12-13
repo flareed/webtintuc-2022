@@ -45,7 +45,7 @@ export default {
             if (event.target.documentElement.scrollTop >= sticky) {
                 this.$refs.navbar.classList.add("sticky")
             }
-            if (event.target.documentElement.scrollTop < 80) {
+            if (event.target.documentElement.scrollTop < 70) {
                 this.$refs.navbar.classList.remove("sticky")
             }
         }
@@ -71,6 +71,6 @@ a:hover {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 100;
 }
 </style>

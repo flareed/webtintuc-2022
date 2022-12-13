@@ -29,7 +29,7 @@
             </small>
 
             <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Tạo tài khoản
                 </button>
                 <a href="/login" class="btn btn-light border border-dark">
@@ -37,30 +37,26 @@
                 </a>
             </div>
 
-            
+
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+            <div ref="myModal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Đã đăng ký thành công
+                            Đăng kí thành công
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <button type="button" class="btn btn-primary">Đồng ý</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                         </div>
                     </div>
                 </div>
             </div>
 
-            
         </div>
     </div>
 </template>
@@ -69,6 +65,13 @@
 
 export default {
     name: 'SignUpForm',
+    // mounted() {
+    //     const myModalEl = this.$refs.myModal
+    //     myModalEl.addEventListener('show.bs.modal', event => {
+    //         // do something...
+    //         console.log(event)
+    //     })
+    // }
 }
 
 </script>

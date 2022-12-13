@@ -30,14 +30,21 @@
                 <div class="col">
                     <div class="row">
                         <h6 class="col-1">
-                            <font-awesome-icon icon="fa-regular fa-share-from-square" />
+                            <button class="btn">
+                                <font-awesome-icon icon="fa-regular fa-share-from-square" />
+                            </button>
                         </h6>
                         <h6 class="col-1">
-                            <font-awesome-icon icon="fa-regular fa-bookmark" />
+                            <button class="btn">
+                                <font-awesome-icon icon="fa-regular fa-bookmark" />
+                            </button>
                         </h6>
                         <h6 class="col-1">
-                            <font-awesome-icon icon="fa-regular fa-comment" />
+                            <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                                <font-awesome-icon icon="fa-regular fa-comment" />
+                            </button>
                         </h6>
+
                     </div>
                 </div>
                 <div class="col">
@@ -59,19 +66,25 @@
                     </h6>
                 </div>
             </div>
-            <div class="border-bottom border-dark mt-4">
-                <h5>Ý KIẾN</h5>
+            
+        </div>
+
+        <!-- Offcanvas -->
+        <div class="offcanvas offcanvas-end" tabindex="1000" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Ý KIẾN</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="form-group mt-4">
+            <div class="offcanvas-body">
                 <div class="input-group">
-                    <textarea class="form-control" id="opinion" rows="2" placeholder="Ý kiến của bạn" ref="opinion"></textarea>
+                    <textarea class="form-control" id="opinion" rows="2" placeholder="Ý kiến của bạn"
+                        ref="opinion"></textarea>
                     <button class="btn btn-outline-secondary" type="button" @click="onClick()">Gửi</button>
                 </div>
-
-            </div>
-            <br>
-            <div class="mx-2" v-for="item in this.comments" :key="item.username">
-                <CommentCard :username=item.username :content=item.content :like=item.like />
+                <br>
+                <div class="mx-2" v-for="item in this.comments" :key="item.username">
+                    <CommentCard :username=item.username :content=item.content :like=item.like />
+                </div>
             </div>
         </div>
 
@@ -126,7 +139,7 @@ export default {
         name: { type: String, required: true },
     },
     methods: {
-        onClick(){
+        onClick() {
             console.log(this.$refs.opinion.value)
         }
     },
