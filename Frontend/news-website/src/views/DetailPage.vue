@@ -11,7 +11,7 @@
         <div class="container mt-4 mb-4" style="max-width: 70%">
             <div class="row">
                 <div class="col">
-                    <h6 class="font-weight-bold text-uppercase">{{ article.tag }}</h6>
+                    <h6 class="fw-bold text-uppercase">{{ article.tag }}</h6>
                 </div>
             </div>
             <div class="row mt-4">
@@ -30,18 +30,25 @@
                 <div class="col">
                     <div class="row">
                         <h6 class="col-1">
-                            <font-awesome-icon icon="fa-regular fa-share-from-square" />
+                            <button class="btn">
+                                <font-awesome-icon icon="fa-regular fa-share-from-square" />
+                            </button>
                         </h6>
                         <h6 class="col-1">
-                            <font-awesome-icon icon="fa-regular fa-bookmark" />
+                            <button class="btn">
+                                <font-awesome-icon icon="fa-regular fa-bookmark" />
+                            </button>
                         </h6>
                         <h6 class="col-1">
-                            <font-awesome-icon icon="fa-regular fa-comment" />
+                            <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                                <font-awesome-icon icon="fa-regular fa-comment" />
+                            </button>
                         </h6>
+
                     </div>
                 </div>
                 <div class="col">
-                    <h6 class="float-right">{{ article.date }}</h6>
+                    <h6 class="float-end">{{ article.date }}</h6>
                 </div>
             </div>
             <div class="row">
@@ -55,25 +62,29 @@
                 <div class="col-md-auto">
                     <h6 class="border rounded p-3">
                         <font-awesome-icon icon="fa-solid fa-feather" />
-                        <span class="ml-2">{{ article.author }}</span>
+                        <span class="ms-2">{{ article.author }}</span>
                     </h6>
                 </div>
             </div>
-            <div class="border-bottom border-dark mt-4">
-                <h5>Ý KIẾN</h5>
-            </div>
-            <div class="form-group mt-4">
-                <div class="input-group">
-                    <textarea class="form-control" id="opinion" rows="2" placeholder="Ý kiến của bạn" ref="opinion"></textarea>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" @click="onClick()">Gửi</button>
-                    </div>
-                </div>
+            
+        </div>
 
+        <!-- Offcanvas -->
+        <div class="offcanvas offcanvas-end" tabindex="1000" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Ý KIẾN</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <br>
-            <div class="mx-2" v-for="item in this.comments" :key="item.username">
-                <CommentCard :username=item.username :content=item.content :like=item.like />
+            <div class="offcanvas-body">
+                <div class="input-group">
+                    <textarea class="form-control" id="opinion" rows="2" placeholder="Ý kiến của bạn"
+                        ref="opinion"></textarea>
+                    <button class="btn btn-outline-secondary" type="button" @click="onClick()">Gửi</button>
+                </div>
+                <br>
+                <div class="mx-2" v-for="item in this.comments" :key="item.username">
+                    <CommentCard :username=item.username :content=item.content :like=item.like />
+                </div>
             </div>
         </div>
 
@@ -128,7 +139,7 @@ export default {
         name: { type: String, required: true },
     },
     methods: {
-        onClick(){
+        onClick() {
             console.log(this.$refs.opinion.value)
         }
     },

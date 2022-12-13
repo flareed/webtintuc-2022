@@ -9,8 +9,16 @@
 
     <main>
         <div class="container py-2">
-            <h3>{{ category.name }}</h3>
             <div class="row">
+                <div class="col">
+                    <h3>{{ category.name }}</h3>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary">Đăng ký nhận thông báo</button>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
                 <div class="col-6">
                     <NewCard :img="this.img" :title="this.title" :description="this.description" />
                     <NewCard :img="this.img" :title="this.title" :description="this.description" />

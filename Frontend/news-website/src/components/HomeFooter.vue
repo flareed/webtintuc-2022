@@ -68,7 +68,7 @@
                     <div class="row mt-4">
                         <div class="col-2">
                             
-                            <div class="font-weight-bold">Liên hệ</div>
+                            <div class="fw-bold">Liên hệ</div>
                         </div>
                         <div class="col-2">
                             <a class="text-dark" href=""><u>Toà soạn</u></a>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-5">
-                            <p class="font-weight-bold">Theo dõi The 23 post trên</p>
+                            <p class="fw-bold">Theo dõi The 23 post trên</p>
                         </div>
                         <div class="col-1">
                             <h4>

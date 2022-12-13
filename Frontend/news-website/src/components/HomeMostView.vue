@@ -1,7 +1,7 @@
 <template>
         <h5>Nhiều lượt xem</h5>
         <div class="row">
-            <a :href="`/${sectionSlug(this.articles[0].category)}/${this.articles[0].title}`" class="col pr-4 border-right border-dark text-dark">
+            <a :href="`/${sectionSlug(this.articles[0].category)}/${slugify(this.articles[0].title)}`" class="col pe-4 border-end border-dark text-dark">
                 <div class="row">
                     <div class="col">
                         <img :src=this.articles[0].imageTitle class="img-fluid" alt="Girl in a jacket" width="400" height="267">
@@ -18,13 +18,13 @@
                             </p>
                         </div>
                         <div class="row">
-                            {{ this.articles[0].category }}
+                            <b>{{ this.articles[0].category }}</b>
                         </div>
                     </div>
                 </div>
             </a>
             <div class="col-4">
-                <a :href="`/${sectionSlug(this.articles[1].category)}/${this.articles[1].title}`" class="row pl-4 ml-2 border-bottom border-dark text-dark">
+                <a :href="`/${sectionSlug(this.articles[1].category)}/${slugify(this.articles[1].title)}`" class="row ps-2 ms-2 border-bottom border-dark text-dark">
                     <div class="row">
                         <h5>{{ this.articles[1].title }}</h5>
                     </div>
@@ -34,7 +34,7 @@
                         </p>
                     </div>
                 </a>
-                <a :href="`/${sectionSlug(this.articles[2].category)}/${this.articles[2].title}`" class="row pl-4 ml-2 mt-3 text-dark">
+                <a :href="`/${sectionSlug(this.articles[2].category)}/${slugify(this.articles[2].title)}`" class="row ps-2 ms-2 mt-3 text-dark">
                     <div class="row">
                         <h5>{{ this.articles[2].title }}</h5>
                     </div>
@@ -50,6 +50,7 @@
     
 <script>
 import sourceData from '@/components/store/data_routes.json'
+import myLib from '@/helpers';
 
 export default {
     name: 'HomeMostView',
@@ -83,6 +84,9 @@ export default {
             return sourceData.categories.find(
                 (destination) => destination.name === name
             ).slug;
+        },
+        slugify(str){
+            return myLib.toSlug(str)
         }
     }
 }
@@ -92,5 +96,9 @@ export default {
 <style scoped>
 a {
     text-decoration: none;
+}
+
+a:hover{
+    color: #0d6efd !important
 }
 </style>

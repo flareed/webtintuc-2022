@@ -1,6 +1,5 @@
 <template>
-    <a :href="`/${section}/${title}`">
-        <div class="row py-3 border-bottom border-dark text-dark">
+        <a :href="`/${section}/${slugify(this.title)}`" class="row py-3 border-bottom border-dark text-dark">
             <div class="col-5">
                 <img :src=img class="img-fluid" :alt=title width="200" height="133.33">
             </div>
@@ -12,11 +11,11 @@
                     <p>{{ description }}</p>
                 </div>
             </div>
-        </div>
-    </a>
+        </a>
 </template>
     
 <script>
+import myLib from '@/helpers';
 export default {
     name: 'NewCard',
     props: {
@@ -27,9 +26,13 @@ export default {
     data() {
         return {
             section: 'the-gioi',
-            url: '/the-gioi/' + this.title
         }
     },
+    methods: {
+        slugify(str){
+            return myLib.toSlug(str)
+        }
+    }
 }
 </script>
     
@@ -37,5 +40,9 @@ export default {
 <style scoped>
 a {
     text-decoration: none;
+}
+
+a:hover{
+    color: #0d6efd !important;
 }
 </style>
