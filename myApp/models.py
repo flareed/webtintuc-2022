@@ -69,6 +69,7 @@ class Article(models.Model):
     author = models.ForeignKey(User,on_delete=models.SET_NULL, null= True)
     title =  models.CharField(max_length=100,null = False)
     content = RichTextField(null = False)
+    img = models.ImageField(null=False,upload_to='Article/%Y/%m',default=None)
     date_posted = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=False) #active: show status of Article, 1-PUBLISHED, 0-CHECKING
@@ -76,17 +77,17 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-class Images_Article(models.Model):
-    Article = models.ForeignKey(Article,on_delete = models.CASCADE,null=False,default=None)
-    imgTitle = models.CharField(max_length=100,null=False,default=None)
-    img = models.ImageField(null=False,upload_to='Article/%Y/%m')
-    class Meta:
-        unique_together = (('Article','imgTitle'),)
+# class Images_Article(models.Model):
+#     Article = models.ForeignKey(Article,on_delete = models.CASCADE,null=False,default=None)
+#     imgTitle = models.CharField(max_length=100,null=False,default=None)
+#     img = models.ImageField(null=False,upload_to='Article/%Y/%m')
+#     class Meta:
+#         unique_together = (('Article','imgTitle'),)
 
 class Comment(models.Model):
     context = models.TextField(null = False)
     date_posted = models.DateTimeField(auto_now_add=True)
-    like_number = models.IntegerField(default=0)
+    like_number = models.IntegerField(default=0)    
     dislike_number = models.IntegerField(default=0)
     admin = models.ForeignKey(User,related_name = 'admin_comment',on_delete=models.SET_NULL,null=True)
     commentor = models.ForeignKey(User,related_name = 'commentor_comment',on_delete=models.SET_NULL,null=True)

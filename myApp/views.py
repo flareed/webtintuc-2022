@@ -12,7 +12,8 @@ from .serializer import UserSerializer,CategorySerializer,ArticleSerializer
 
 class UserViewSet(viewsets.ViewSet,
                   generics.CreateAPIView,
-                  generics.RetrieveAPIView):
+                  generics.RetrieveAPIView,
+                  generics.UpdateAPIView):
     queryset = User.objects.filter(is_active = True)
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser, ]

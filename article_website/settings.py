@@ -37,12 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myApp',
+    'myApp.apps.MyappConfig',
     'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
     'oauth2_provider',
-    'drf-yasg'
+    'drf_yasg'
 ]
 
 
