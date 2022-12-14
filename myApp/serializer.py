@@ -1,11 +1,26 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer,SerializerMethodField
 from .models import Category,User,Article
 
 
 class ArticleSerializer(ModelSerializer):
+    img = SerializerMethodField()
+
+    def get_image(self,article):
+        request = self.context['request']
+        name = Article.img.name
+        if name.startswith("static/"):
+            path = '/%s' % name
+        else:
+            path = '/static/%s' % name
+        
+        return request.build_absolute_uri(path)
+    
+    
     class Meta:
         model = Article
-        fields = ["author","title","content","date_posted","active"]
+        fields = ["id","category","author","title","content","date_posted","img"]
+
+    
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -26,7 +41,7 @@ class UserSerializer(ModelSerializer):
     
 
 class CategorySerializer(ModelSerializer):
-    articles = ArticleSerializer(Article,many=True)
+    #articles = ArticleSerializer(Article,many=True)
     class Meta:
         model = Category
-        fields = ["id","name","description","articles"]
+        fields = ["id","name","description"]

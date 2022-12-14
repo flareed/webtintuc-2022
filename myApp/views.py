@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from django.shortcuts import render
 from .models import *
 from .serializer import UserSerializer,CategorySerializer,ArticleSerializer
+from .paginator import TenPagination
 
 
 
@@ -25,7 +26,7 @@ class UserViewSet(viewsets.ViewSet,
         return [permissions.AllowAny()]
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ViewSet,generics.ListAPIView,generics.UpdateAPIView):
     queryset = Category.objects.filter(active = True)
     serializer_class = CategorySerializer
 
@@ -34,9 +35,19 @@ class CategoryViewSet(viewsets.ModelViewSet):
             return [permissions.AllowAny()]
         return [permissions.IsAuthenticated()]
 
-class ArticleViewSet(viewsets.ModelViewSet):   
-    queryset = Article.objects.filter(active = True)
+class ArticleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView):   
+    
     serializer_class = ArticleSerializer
+    pagination_class = TenPagination    
+
+    def get_queryset(self):
+        Articles = Article.objects.filter(active = True)
+
+        cate_id = self.request.query_params.get('category_id')
+
+        if cate_id is not None:
+            Articles = Articles.filter(category_id = cate_id)        
+        return Articles
 
     @action(methods=['post'],detail=True)
     #/article/{pk}/active_article
