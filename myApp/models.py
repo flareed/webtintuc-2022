@@ -50,7 +50,7 @@ class Subscriber(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50,null = False,unique= True)
     description = models.TextField(null = True,blank=True)
-    articles = models.ManyToManyField('Article',related_name='category_articles')
+    #articles = models.ManyToManyField('Article',related_name='category_articles')
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -65,7 +65,7 @@ class Subscriber_Category(models.Model):
     active = models.BooleanField(default=True) #active: show status of subscriber with their Category, 1-ACTIVE, 0-DELETE
 
 class Article(models.Model):
-    category = models.ForeignKey(Category,on_delete=models.SET_NULL, null = True)
+    category = models.ForeignKey(Category,related_name = "articles", on_delete=models.SET_NULL, null = True)
     author = models.ForeignKey(User,on_delete=models.SET_NULL, null= True)
     title =  models.CharField(max_length=100,null = False)
     content = RichTextField(null = False)

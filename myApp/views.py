@@ -7,52 +7,66 @@ from rest_framework.response import Response
 from django.shortcuts import render
 from .models import *
 from .serializer import UserSerializer,CategorySerializer,ArticleSerializer
-from .paginator import TenPagination
+from .paginator import BasePagination
 
 
 
 class UserViewSet(viewsets.ViewSet,
-                  generics.CreateAPIView,
+                  generics.ListAPIView,
                   generics.RetrieveAPIView,
                   generics.UpdateAPIView):
     queryset = User.objects.filter(is_active = True)
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser, ]
 
-    def get_permissions(self):
-        if self.action == 'retrieve':
-            return [permissions.IsAuthenticated()]
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         return [permissions.IsAuthenticated()]
 
-        return [permissions.AllowAny()]
+    #     return [permissions.AllowAny()]
+    
+    
 
 
-class CategoryViewSet(viewsets.ViewSet,generics.ListAPIView,generics.UpdateAPIView):
+class CategoryViewSet(viewsets.ViewSet,generics.ListAPIView,generics.UpdateAPIView,generics.RetrieveAPIView):
     queryset = Category.objects.filter(active = True)
     serializer_class = CategorySerializer
 
-    def get_permissions(self):
-        if self.action == 'list':
-            return [permissions.AllowAny()]
-        return [permissions.IsAuthenticated()]
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         return [permissions.AllowAny()]
+    #     return [permissions.IsAuthenticated()]
+    @action(methods=['get'],detail=True,url_path="articles")
+    def get_articles(self,request,pk):
+        articles = Category.objects.get(pk=pk).articles.filter(active = True)
+        #articles = self.get_object().articles.filter(active = True)
+        
+        q = request.query_params.get('q')
 
-class ArticleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView):   
+        if q is not None:
+            articles = articles.filter(title__icontains=q)
+
+        return Response(ArticleSerializer(articles,many=True).data, status = status.HTTP_200_OK)
+
+
+class ArticleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView,generics.RetrieveAPIView):   
     
     serializer_class = ArticleSerializer
-    pagination_class = TenPagination    
+    pagination_class = BasePagination    
 
     def get_queryset(self):
         Articles = Article.objects.filter(active = True)
 
-        cate_id = self.request.query_params.get('category_id')
+        q = self.request.query_params.get('q')
 
-        if cate_id is not None:
-            Articles = Articles.filter(category_id = cate_id)        
+        if q is not None:
+            Articles = Articles.filter(title__icontains=q)        
         return Articles
 
     @action(methods=['post'],detail=True)
     #/article/{pk}/active_article
     def active_article(self,request,pk):
-        try:
+        try:    
             a = Article.objects.get(pk = pk)
             a.active = True
             a.save()
@@ -72,7 +86,7 @@ class ArticleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIV
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         return Response(ArticleSerializer(a).data,status = status.HTTP_200_OK)
-
+   
 
 
 
