@@ -55,7 +55,7 @@ class ArticleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIV
     pagination_class = BasePagination    
 
     def get_queryset(self):
-        Articles = Article.objects.filter(active = True)
+        Articles = Article.objects.filter(active=True)
 
         q = self.request.query_params.get('q')
 
