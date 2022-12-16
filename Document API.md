@@ -133,7 +133,7 @@
         "img": string,
     }
 
-9. Ẩn một bài báo
+## Ẩn một bài báo
     Url: api/articles/{id}/hide_article
     Method: POST
     Response status: HTTP 200 OK
