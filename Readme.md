@@ -1,4 +1,4 @@
-# Article_Website
+# THE23POST
 
 ## Installation
 
@@ -21,4 +21,8 @@ myEnv\Scripts\activate
 ```bash
 python manage.py runserver
 ```
+
+
+## License 
+THE 23 GROUP
 
