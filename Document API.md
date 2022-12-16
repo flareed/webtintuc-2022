@@ -1,4 +1,7 @@
-1. Lấy danh sách các thể loại
+# DOCUMENT API
+
+## Lấy danh sách các thể loại
+    ```bash
     Url: api/categories/
     Method: GET
     Response status: HTTP 200 OK
@@ -7,6 +10,7 @@
                      "name": string,
                      "description": string,
                      }
+    ```
 
 2. Lấy danh sách tất cả các bài báo, mỗi trang hiển thị 20 bài
     Url: api/articles/?page=?
