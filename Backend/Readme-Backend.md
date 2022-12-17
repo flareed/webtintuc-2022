@@ -8,7 +8,7 @@ Install all library to support for program
 pip install -r requirements.txt
 ```
 
-Connect to database
+## Connect to database
     Open MySQL --> Create a new database, set:
         Name database: article_website
         Charset: utf8mb4
