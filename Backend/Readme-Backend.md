@@ -27,7 +27,7 @@ myEnv\Scripts\activate
 ###### Step 1    
     Go to DATABASE var in ./article_website/settings.py
 ###### Step 2  
-    At USER and PASSWORD fields, change to mySQL's user and password
+    At USER and PASSWORD fields, change to your mySQL's user and password
 
 
 ### Then, return to terminal, type:
