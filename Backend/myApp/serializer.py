@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer,SerializerMethodField
 from .models import Category,User,Article,Subscriber
-
+from rest_framework import serializers
 
 
     
@@ -48,13 +48,9 @@ class ArticleSerializer(ModelSerializer):
         model = Article
         fields = ["id","category","author","title","description","content","location","date_posted","img"]
 
-class SubscribeCategoriesSerializer(ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ["name"]
 
 class SubscriberSerializer(ModelSerializer):
-    categories = SubscribeCategoriesSerializer(many = True)
+    categories = serializers.StringRelatedField(many = True)
     class Meta:
         model = Subscriber
         fields = ["id","subscriber","categories"]
