@@ -3,10 +3,10 @@ from rest_framework import viewsets,generics, permissions,status
 from rest_framework.parsers import MultiPartParser
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from django.http import Http404
 from django.shortcuts import render
 from .models import *
-from .serializer import UserSerializer,CategorySerializer,ArticleSerializer
+from .serializer import UserSerializer,CategorySerializer,ArticleSerializer,SubscriberSerializer
 from .paginator import BasePagination
 
 
@@ -28,7 +28,10 @@ class UserViewSet(viewsets.ViewSet,
     
 
 
-class CategoryViewSet(viewsets.ViewSet,generics.ListAPIView,generics.UpdateAPIView,generics.RetrieveAPIView):
+class CategoryViewSet(viewsets.ViewSet,
+                      generics.ListAPIView,
+                      generics.UpdateAPIView,
+                      generics.RetrieveAPIView):
     queryset = Category.objects.filter(active = True)
     serializer_class = CategorySerializer
 
@@ -86,7 +89,38 @@ class ArticleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIV
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         return Response(ArticleSerializer(a).data,status = status.HTTP_200_OK)
-   
+
+class SubscriberViewSet(viewsets.ViewSet,
+                                generics.ListAPIView,
+                                generics.CreateAPIView,
+                                generics.RetrieveAPIView):
+    serializer_class = SubscriberSerializer
+    queryset = Subscriber.objects.filter(active = True)
+
+    @action(methods=['post'],detail=True,url_path="categories")
+    def add_category(self,request,pk):
+        try:
+            subscriber = self.get_object()
+        except Http404:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            categories = request.data.get("categories")
+            if categories is not None:
+                for cat in categories:
+                    c, _ = Category.objects.get(name=cat)
+                    if c is not None:
+                        subscriber.categories.add(c)
+                    else:
+                        pass
+
+                subscriber.save()
+
+                return Response(self.serializer_class(subscriber).data,
+                                status = status.HTTP_201_CREATED)
+            
+
+
+
 
 
 

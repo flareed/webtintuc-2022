@@ -10,6 +10,15 @@
                      "description": string,
                      }
 
+## Cập nhật mô tả của thể loại
+    Url: api/categories/{category_id}
+    Method: PUT
+    Response status: HTTP 200 OK
+    Response data: {
+                     "name": string,
+                     "description": string,
+                     }
+
 ## Lấy danh sách tất cả các bài báo, mỗi trang hiển thị 20 bài
     Url: api/articles/?page=?
     Method: GET
@@ -23,6 +32,7 @@
                         "category": string,
                         "author": string,
                         "title": string,
+                        "description": string,
                         "content": string,
                         "date_posted": string,
                         "img": string,
@@ -43,6 +53,7 @@
                         "category": string,
                         "author": string,
                         "title": string,
+                        "description": string,
                         "content": string,
                         "date_posted": string,
                         "img": string,
@@ -59,6 +70,7 @@
                         "category": string,
                         "author": string,
                         "title": string,
+                        "description": string,
                         "content": string,
                         "date_posted": string,
                         "img": string,
@@ -77,6 +89,7 @@
                         "category": string,
                         "author": string,
                         "title": string,
+                        "description": string,
                         "content": string,
                         "date_posted": string,
                         "img": string,
@@ -96,6 +109,7 @@
                         "category": string,
                         "author": string,
                         "title": string,
+                        "description": string,
                         "content": string,
                         "date_posted": string,
                         "img": string,
@@ -112,8 +126,9 @@
         "category": int,
         "author": int,
         "title": string,
+        "description": string,
         "content": string,
-        "date_posted": string,
+        "location": string,
         "img": string,
 
     }
@@ -128,6 +143,7 @@
         "category": int,
         "author": int,
         "title": string,
+        "description": string,
         "content": string,
         "date_posted": string,
         "img": string,
@@ -143,6 +159,7 @@
         "category": int,
         "author": int,
         "title": string,
+        "description": string,
         "content": string,
         "date_posted": string,
         "img": string,
