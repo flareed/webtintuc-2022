@@ -65,7 +65,7 @@ class Article(models.Model):
     category = models.ForeignKey(Category,related_name = "articles", on_delete=models.SET_NULL, null = True)
     author = models.CharField(max_length=100, null= True)
     title =  models.CharField(max_length=100,null = False)
-    description = models.CharField(max_length=200,null = False)
+    description = models.CharField(max_length=200,null = False,default=None)
     content = RichTextField(null = False)
     img = models.ImageField(null=False,upload_to='Article/%Y/%m',default=None)
     date_posted = models.DateTimeField(auto_now_add=True)
