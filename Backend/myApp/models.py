@@ -43,9 +43,6 @@ class User(AbstractUser):
 #     img = models.ImageField(null = True,upload_to = 'members/%Y/%m',default=None)
 
 #---------------------------------------------------------------------------------------------
-class Subscriber(models.Model):
-    email = models.CharField(max_length=50,null = False,unique=True)
-    active = models.BooleanField(default=True)
 
 class Category(models.Model):
     name = models.CharField(max_length=50,null = False,unique= True)
@@ -56,18 +53,19 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Subscriber_Category(models.Model):
-    subscriber = models.ForeignKey(Subscriber,on_delete=models.CASCADE)
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
-    class Meta:
-        unique_together = (('subscriber','category'),)
-    subscribed_time = models.DateTimeField(auto_now_add=True)
+class Subscriber(models.Model):
+    subscriber = models.CharField(max_length=50,null = False,unique=True)
+    categories = models.ManyToManyField('Category',related_name = 'categories')
     active = models.BooleanField(default=True) #active: show status of subscriber with their Category, 1-ACTIVE, 0-DELETE
+
+    class Meta:
+        ordering = ['subscriber']
 
 class Article(models.Model):
     category = models.ForeignKey(Category,related_name = "articles", on_delete=models.SET_NULL, null = True)
     author = models.CharField(max_length=100, null= True)
     title =  models.CharField(max_length=100,null = False)
+    description = models.CharField(max_length=200,null = False)
     content = RichTextField(null = False)
     img = models.ImageField(null=False,upload_to='Article/%Y/%m',default=None)
     date_posted = models.DateTimeField(auto_now_add=True)
