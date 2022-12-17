@@ -24,9 +24,9 @@ myEnv\Scripts\activate
         Collation: utf8bm4_unicode
 
 ### Next, grant to program access your database
- ##### Step 1    
+###### Step 1    
     Go to DATABASE var in ./article_website/settings.py
- ##### Step 2  
+###### Step 2  
     At USER and PASSWORD fields, change to mySQL's user and password
 
 
