@@ -113,7 +113,7 @@
         "author": int,
         "title": string,
         "content": string,
-        "date_posted": string,
+        "location": string,
         "img": string,
 
     }

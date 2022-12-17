@@ -66,12 +66,13 @@ class Subscriber_Category(models.Model):
 
 class Article(models.Model):
     category = models.ForeignKey(Category,related_name = "articles", on_delete=models.SET_NULL, null = True)
-    author = models.ForeignKey(User,on_delete=models.SET_NULL, null= True)
+    author = models.CharField(max_length=100, null= True)
     title =  models.CharField(max_length=100,null = False)
     content = RichTextField(null = False)
     img = models.ImageField(null=False,upload_to='Article/%Y/%m',default=None)
     date_posted = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    location = models.CharField(max_length=50,null=True)
     active = models.BooleanField(default=False) #active: show status of Article, 1-PUBLISHED, 0-CHECKING
 
     def __str__(self):
