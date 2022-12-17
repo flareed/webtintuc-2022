@@ -17,14 +17,13 @@ myEnv\Scripts\activate
 
 ## Connect and update database
 
-
-## Connect to database
+First, we need create a new database
     Open MySQL --> Create a new database, set:
         Name database: article_website
         Charset: utf8mb4
         Collation: utf8bm4_unicode
 
-Return to terminal, type:
+Then, return to terminal, type:
 
 ```bash
 py manage.py makemigrations myApp
