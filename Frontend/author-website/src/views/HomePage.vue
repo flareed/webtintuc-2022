@@ -2,29 +2,30 @@
     <HomeHeader />
     <main>
         <div class="editor-style">
-            <div class="form-group">
-                <label for="title">Tiêu đề</label>
-                <input type="text" id="title" v-model="title" class="form-control">
+            <div class="mb-3">
+                <label for="title" class="form-label">Tiêu đề</label>
+                <input type="text" class="form-control" id="title" v-model="title">
             </div>
-            <div class="form-group">
-                <label for="title">Ảnh tiêu đề (link)</label>
-                <input type="text" id="titleImage" v-model="titleImage" class="form-control">
+            <div class="mb-3">
+                <label for="titleImage" class="form-label">Ảnh tiêu đề (link)</label>
+                <input type="text" class="form-control" id="titleImage" v-model="titleImage">
             </div>
-            <div class="form-group mt-3">
-                <label for="description">Mô tả ngắn</label>
-                <textarea type="text" id="description" v-model="description" class="form-control" rows="3"></textarea>
+            <div class="mb-3">
+                <label for="description" class="form-label">Mô tả ngắn</label>
+                <textarea type="text" class="form-control" id="description" v-model="description" rows="3"></textarea>
             </div>
-            <div class="form-group mt-3">
-                <label for="author">Tác giả (hoặc trích dẫn)</label>
-                <input type="text" id="author" v-model="author" class="form-control">
+            <div class="mb-3">
+                <label for="author" class="form-label">Tác giả (hoặc trích dẫn)</label>
+                <input type="text" class="form-control" id="author" v-model="author">
             </div>
-            <div class="form-group mt-3">
-                <label for="location">Địa điểm</label>
-                <input type="text" id="location" v-model="location" class="form-control">
+            <div class="mb-3">
+                <label for="location" class="form-label">Địa điểm</label>
+                <input type="text" class="form-control" id="location" v-model="location">
             </div>
-            <div class="form-group mt-3">
+            <div class="mb-3">
                 <label for="tag">Tag</label>
-                <select name="tag" class="form-control" v-model="tag" id="tag">
+                <select class="form-select" v-model="tag" id="tag">
+                    <option selected>Chọn thể loại</option>
                     <option>Thời sự</option>
                     <option>Khoa học</option>
                     <option>Số hoá</option>
@@ -32,7 +33,32 @@
                 </select>
             </div>
             <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
-            <input type="button" value="Submit" class="btn btn-success mt-4 float-right" @click="onSubmit()">
+            <button type="button" class="btn btn-success mt-4 float-end" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" @click="onSubmit()">
+                Submit
+            </button>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Submit thành công
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary">Đồng ý</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -89,6 +115,7 @@ export default {
         HomeHeader,
         HomeFooter
     },
+
 }
 </script>
   
