@@ -2,14 +2,14 @@
 
 ## Installation
 
-Install all library to support for program
+### Install all library to support for program
 
 ```bash
 pip install -r requirements.txt
 ```
 ## Virtual Environment
 
-Work on virtual environment
+### Work on virtual environment
 
 ```bash
 myEnv\Scripts\activate
@@ -17,13 +17,13 @@ myEnv\Scripts\activate
 
 ## Connect and update database
 
-First, we need create a new database
+### First, we need create a new database
     Open MySQL --> Create a new database, set:
         Name database: article_website
         Charset: utf8mb4
         Collation: utf8bm4_unicode
 
-Then, return to terminal, type:
+### Then, return to terminal, type:
 
 ```bash
 py manage.py makemigrations myApp
