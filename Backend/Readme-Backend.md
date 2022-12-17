@@ -7,6 +7,16 @@ Install all library to support for program
 ```bash
 pip install -r requirements.txt
 ```
+## Virtual Environment
+
+Work on virtual environment
+
+```bash
+myEnv\Scripts\activate
+```
+
+## Connect and update database
+
 
 ## Connect to database
     Open MySQL --> Create a new database, set:
@@ -14,12 +24,11 @@ pip install -r requirements.txt
         Charset: utf8mb4
         Collation: utf8bm4_unicode
 
-## Virtual Environment
-
-Work on virtual environment
+Return to terminal, type:
 
 ```bash
-myEnv\Scripts\activate
+py manage.py makemigrations myApp
+py manage.py migrate
 ```
 
 ## Compile and Run server
