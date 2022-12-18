@@ -80,7 +80,6 @@ export default {
     },
     methods: {
         sectionSlug(name) {
-            console.log(name)
             return sourceData.categories.find(
                 (destination) => destination.name === name
             ).slug;

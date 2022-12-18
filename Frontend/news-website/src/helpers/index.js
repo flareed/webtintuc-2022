@@ -28,5 +28,19 @@ exports.toSlug = (str) => {
 	return str;
 }
 
-// console.log(toSlug('Lịch trình gợi ý cho người lần đầu đi Hà Giang'))
+exports.parseDate = (time) => {
+	let date = new Date(time)
+	let day = date.getDate();
+	let month = date.getMonth() + 1;
+	let year = date.getFullYear();
+
+	const weekday = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"];
+	let dayOfWeek = weekday[date.getDay()];
+
+	let hr = ("0" + date.getHours()).slice(-2);
+	let min = ("0" + date.getMinutes()).slice(-2);
+
+	return `${dayOfWeek}, ${day}/${month}/${year}, ${hr}:${min}`
+}
+
 export default exports
