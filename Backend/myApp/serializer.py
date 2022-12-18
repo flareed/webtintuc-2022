@@ -43,7 +43,7 @@ class ArticleSerializer(ModelSerializer):
         
     #     return request.build_absolute_uri(path)
     
-    
+    category = serializers.StringRelatedField()
     class Meta:
         model = Article
         fields = ["id","category","author","title","description","content","location","date_posted","img"]
