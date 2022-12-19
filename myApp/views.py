@@ -125,6 +125,39 @@ class SubscriberViewSet(viewsets.ViewSet,
                                 status = status.HTTP_201_CREATED)
             else:
                 return Response("Categories field is required")
+
+    @action(methods=['post'],detail=True)
+    def delete_category(self,request,pk):
+        try:
+            subscriber = self.get_object()
+        except Http404:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            categories = request.data.get("categories")
+            if categories is not None:
+                for cat in categories:
+                    if Category.objects.filter(name=cat).exists():
+                        subscriber.categories.remove(Category.objects.get(name=cat))
+                    else:
+                        return Response("Category is not existed")
+
+                subscriber.save()
+
+                return Response(self.serializer_class(subscriber).data,
+                                status = status.HTTP_201_CREATED)
+            else:
+                return Response("Categories field is required")
+
+    @action(methods=['post'],detail=True,url_path = 'delete')
+    def delete_subscriber(self,request,pk):
+        try:
+            a = Subscriber.objects.get(pk = pk)
+            a.active = False
+            a.save()
+        except Subscriber.DoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(SubscriberSerializer(a).data,status = status.HTTP_200_OK)
             
 
 

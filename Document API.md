@@ -211,3 +211,23 @@
     Body = {
         "categories": [string]
     }
+
+## Xoá subscriber
+    Url: api/articles/{id}/delete/
+    Method: POST
+    Response status: HTTP 200 OK
+    Content-Type: application/json
+    Body = {
+        "subscriber": "",
+        "categories": "",
+    }
+
+## Xoá thể loại subscriber đã đăng kí
+    Url: api/articles/{id}/delete_category/
+    Method: POST
+    Response status: HTTP 200 OK
+    Content-Type: application/json
+    Body = {
+        "subscriber": "",
+        "categories": "",
+    }
