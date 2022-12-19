@@ -11,7 +11,7 @@
                      }
 
 ## Cập nhật mô tả của thể loại
-    Url: api/categories/{category_id}
+    Url: api/categories/{category_id}/
     Method: PUT
     Response status: HTTP 200 OK
     Response data: {
@@ -20,7 +20,7 @@
                      }
 
 ## Lấy danh sách tất cả các bài báo, mỗi trang hiển thị 20 bài
-    Url: api/articles/?page=?
+    Url: api/articles/?page=?/
     Method: GET
     Response status: HTTP 200 OK
     Response data: {
@@ -41,7 +41,7 @@
 
 
 ## Truy cập chi tiết từng bài báo
-    Url: api/articles/{article_id}
+    Url: api/articles/{article_id}/
     Method: GET
     Response status: HTTP 200 OK
     Response data: {
@@ -77,7 +77,7 @@
     }
 
 ## Tìm kiếm danh sách các bài báo theo từ khoá
-    Url: api/articles/?q={key word}
+    Url: api/articles/?q={key word}/
     Method: GET
     Response status: HTTP 200 OK
     Response data: {
@@ -97,7 +97,7 @@
     }
 
 ## Tìm kiếm danh sách các bài báo theo từ khoá và theo thể loại
-    Url: api/categories/{category_id}/articles/?q={key word}
+    Url: api/categories/{category_id}/articles/?q={key word}/
     Method: GET
     Response status: HTTP 200 OK
     Response data: {
@@ -134,7 +134,7 @@
     }
 
 ## Active một bài báo
-    Url: api/articles/{id}/active_article
+    Url: api/articles/{id}/active_article/
     Method: POST
     Response status: HTTP 200 OK
     Content-Type: application/json
@@ -150,7 +150,7 @@
     }
 
 ## Ẩn một bài báo
-    Url: api/articles/{id}/hide_article
+    Url: api/articles/{id}/hide_article/
     Method: POST
     Response status: HTTP 200 OK
     Content-Type: application/json
@@ -163,4 +163,51 @@
         "content": string,
         "date_posted": string,
         "img": string,
+    }
+
+## Xem danh sách các subscriber
+    Url: api/subscribers/
+    Method: GET
+    Response status: HTTP 200 OK
+    Response data = {
+                        "count": int,
+                        "next": string,
+                        "previous": string,
+                        "results": [{
+                            ""id": int,
+                            "subscriber": string,
+                        }]
+                    }
+
+## Thêm subscriber vào danh sách
+    Url: api/subscribers/
+    Method: POST
+    Response status: HTTP 200 OK
+    Content-Type: application/json
+    Body = {
+        "subscriber": string
+    }
+
+## Truy cập chi tiết subscriber
+    Url: api/subscribers/{id}
+    Method: GET
+    Response status: HTTP 200 OK
+    Response data = {
+                        
+                        ""id": int,
+                        "subscriber": string,
+                        "categories": [
+                            {
+                                "name": string
+                            },
+                        ]
+                    }
+
+## Đăng kí thể loại cho subscriber
+    Url: api/subscribers/1/add_category/
+    Method: POST
+    Response status: HTTP 200 OK
+    Content-Type: application/json
+    Body = {
+        "categories": [string]
     }

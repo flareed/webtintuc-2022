@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer,SerializerMethodField
 from .models import Category,User,Article,Subscriber
 from rest_framework import serializers
+from django import forms
 
 
     
@@ -29,6 +30,12 @@ class CategorySerializer(ModelSerializer):
         model = Category
         fields = ["id","name","description"]
 
+class NameCategorySerializer(ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = ["name"]
+
 
 class ArticleSerializer(ModelSerializer):
     # image = SerializerMethodField()
@@ -43,14 +50,21 @@ class ArticleSerializer(ModelSerializer):
         
     #     return request.build_absolute_uri(path)
     
-    
+    category = serializers.StringRelatedField()
     class Meta:
         model = Article
         fields = ["id","category","author","title","description","content","location","date_posted","img"]
 
 
 class SubscriberSerializer(ModelSerializer):
-    categories = serializers.StringRelatedField(many = True)
+    class Meta:
+        model = Subscriber
+        fields = ["id","subscriber"]
+
+class DetailSubscriberSerializer(ModelSerializer):
+    categories = NameCategorySerializer(many = True)
     class Meta:
         model = Subscriber
         fields = ["id","subscriber","categories"]
+    
+
