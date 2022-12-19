@@ -1,12 +1,12 @@
 
-from rest_framework import viewsets,generics, permissions,status
+from rest_framework import viewsets,generics, permissions,status,serializers
 from rest_framework.parsers import MultiPartParser
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.http import Http404
 from django.shortcuts import render
 from .models import *
-from .serializer import UserSerializer,CategorySerializer,ArticleSerializer,SubscriberSerializer
+from .serializer import UserSerializer,CategorySerializer,ArticleSerializer,SubscriberSerializer, DetailSubscriberSerializer
 from .paginator import BasePagination
 
 
@@ -91,13 +91,20 @@ class ArticleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIV
         return Response(ArticleSerializer(a).data,status = status.HTTP_200_OK)
 
 class SubscriberViewSet(viewsets.ViewSet,
-                                generics.ListAPIView,
-                                generics.CreateAPIView,
-                                generics.RetrieveAPIView):
-    serializer_class = SubscriberSerializer
+                        generics.ListAPIView,
+                        generics.CreateAPIView,
+                        generics.RetrieveAPIView):
+    
     queryset = Subscriber.objects.filter(active = True)
-
-    @action(methods=['post'],detail=True,url_path="categories")
+    pagination_class = BasePagination
+    serializer_class = DetailSubscriberSerializer
+    def get_serializer_class(self):
+        if self.action == 'list':
+            serializer_class = SubscriberSerializer
+        else:
+            serializer_class = DetailSubscriberSerializer
+        return serializer_class
+    @action(methods=['post'],detail=True)
     def add_category(self,request,pk):
         try:
             subscriber = self.get_object()
@@ -107,16 +114,17 @@ class SubscriberViewSet(viewsets.ViewSet,
             categories = request.data.get("categories")
             if categories is not None:
                 for cat in categories:
-                    c, _ = Category.objects.get(name=cat)
-                    if c is not None:
-                        subscriber.categories.add(c)
+                    if Category.objects.filter(name=cat).exists():
+                        subscriber.categories.add(Category.objects.get(name=cat))
                     else:
-                        pass
+                        return Response("Category is not existed")
 
                 subscriber.save()
 
                 return Response(self.serializer_class(subscriber).data,
                                 status = status.HTTP_201_CREATED)
+            else:
+                return Response("Categories field is required")
             
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article,Category,User
+from .models import Article,Category,User,Subscriber
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.contrib.auth.models import Permission
@@ -27,7 +27,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ArticleProgramAdminSite(admin.AdminSite):
-    site_header = 'HNQT Article'
+    site_header = 'THE23POST'
+
+#class SubscriberAdmin(admin.ModelAdmin)
 
 
 # admin_site = ArticleProgramAdminSite('myProgram')
@@ -39,6 +41,7 @@ admin.site.register(Article,ArticleAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(User)
 admin.site.register(Permission)
+admin.site.register(Subscriber)
 
 
 
