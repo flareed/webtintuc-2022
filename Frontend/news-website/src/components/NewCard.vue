@@ -1,7 +1,7 @@
 <template>
         <a :href="`/${slugify(this.category)}/${this.id}`" class="row py-3 border-bottom border-dark text-dark">
             <div class="col-4">
-                <img :src="`http://127.0.0.1:8000${img}`" class="img-fluid" :alt=title width="300" height="200">
+                <img :src="`http://127.0.0.1:8000${img}`" class="img-fluid cropped" :alt=title >
             </div>
             <div class="col">
                 <div class="row">
@@ -46,5 +46,11 @@ a {
 
 a:hover{
     color: #0d6efd !important;
+}
+.cropped {
+    width: 230px !important; 
+    height: 153px !important; 
+    overflow: hidden !important;
+    object-fit: cover !important;
 }
 </style>

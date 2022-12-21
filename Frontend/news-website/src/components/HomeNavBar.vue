@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid border-top border-bottom border-dark mb-2" ref="navbar"
+    <div class="container-fluid border-bottom border-dark mb-2" ref="navbar"
         style="background-color: white !important;">
         <div class="row h-100">
             <div class="col-1 my-auto ms-2">

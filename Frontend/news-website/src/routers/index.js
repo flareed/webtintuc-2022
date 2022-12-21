@@ -22,6 +22,12 @@ const routes = [
         component: () => import('../views/SignUpPage.vue'),
     },
     {
+        path: '/search',
+        name: 'Search',
+        component: () => import('../views/SearchPage.vue'),
+        props: route => ({ query: route.query.q })
+    },
+    {
         path: '/:section/:id',
         name: 'article',
         component: () => import('../views/DetailPage.vue'),
