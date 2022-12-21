@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import HomePage from '../views/HomePage.vue';
 import sourceData from '../components/store/data_routes.json'
+// import { HTTP } from '../api'
 
 const routes = [
     {
@@ -21,10 +22,10 @@ const routes = [
         component: () => import('../views/SignUpPage.vue'),
     },
     {
-        path: '/:section/:name',
+        path: '/:section/:id',
         name: 'article',
         component: () => import('../views/DetailPage.vue'),
-        props: route=> ({...route.params, section: route.params.section, name: route.params.name}),
+        props: route=> ({...route.params, section: route.params.section, id: route.params.id}),
         beforeEnter(to) {
             const exists = sourceData.categories.find(
                 destination => destination.slug === to.params.section

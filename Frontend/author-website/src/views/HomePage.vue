@@ -7,8 +7,8 @@
                 <input type="text" class="form-control" id="title" v-model="title">
             </div>
             <div class="mb-3">
-                <label for="titleImage" class="form-label">Ảnh tiêu đề (link)</label>
-                <input type="text" class="form-control" id="titleImage" v-model="titleImage">
+                <label for="titleImage" class="form-label">Ảnh tiêu đề</label>
+                <input type="file" class="form-control" id="titleImage" @change="selectFile" ref="fileInput">
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Mô tả ngắn</label>
@@ -25,11 +25,9 @@
             <div class="mb-3">
                 <label for="tag">Tag</label>
                 <select class="form-select" v-model="tag" id="tag">
-                    <option selected>Chọn thể loại</option>
-                    <option>Thời sự</option>
-                    <option>Khoa học</option>
-                    <option>Số hoá</option>
-                    <option>Sức khoẻ</option>
+                    <option v-for="item in this.categories" :key="item.name">
+                        {{ item.name }}
+                    </option>
                 </select>
             </div>
             <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
@@ -53,7 +51,6 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                            <button type="button" class="btn btn-primary">Đồng ý</button>
                         </div>
                     </div>
                 </div>
@@ -72,6 +69,8 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import HomeHeader from '../components/HomeHeader.vue'
 import HomeFooter from '../components/HomeFooter.vue'
+import { HTTP } from '../api'
+import axios from 'axios';
 
 export default {
     name: 'HomePage',
@@ -83,33 +82,84 @@ export default {
                 // The configuration of the editor.
             },
             title: '',
-            titleImage: '',
+            image: '',
             description: '',
             author: '',
             location: '',
-            tag: ''
+            tag: '',
+            categories: []
         };
     },
     methods: {
+        selectFile(event) {
+            this.image = event.target.files[0]
+        },
         onSubmit() {
-            let article = {
-                "title": this.title,
-                "imageTitle": this.imageTitle,
-                "description": this.description,
-                "author": this.author,
-                "location": this.location,
-                "tag": this.tag,
-                "content": this.editorData
-            }
-            console.log(article)
+            let categoryId = this.categories.find(
+                (destination) => destination.name === this.tag
+            ).id
+
+            const formData = new FormData();
+            formData.append('category', categoryId);
+            formData.append('author', this.author);
+            formData.append('title', this.title);
+            formData.append('description', this.description);
+            formData.append('content', this.editorData);
+            formData.append('location', this.location);
+            formData.append('img', this.image);
+
+            // let article = {
+            //     "category": categoryId,
+            //     "author": this.author,
+            //     "title": this.title,
+            //     "description": this.description,
+            //     "content": this.editorData,
+            //     "location": this.location,
+            //     "img": this.image
+            // }
+            // for (const value of formData.values()) {
+            //     console.log(value);
+            // }
+
+            HTTP.post(`/api/articles/`,
+                formData
+            ,{
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(response => { 
+                   console.log(response)
+                })
+                .catch(e => {
+                    console.log(e.response.data)
+                })
+
             this.title = ''
-            this.imageTitle = ''
+            this.image = ''
             this.description = ''
             this.author = ''
             this.location = ''
             this.tag = ''
             this.editorData = ''
+            this.$refs.fileInput.value = null
         }
+    },
+    created() {
+        HTTP.get(`api/categories/`)
+            .then(response => {
+                this.categories = response.data.results
+                axios.get(response.data.next)
+                    .then(res => {
+                        this.categories.push(...res.data.results)
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+            })
+            .catch(e => {
+                console.log(e)
+            })
     },
     components: {
         HomeHeader,

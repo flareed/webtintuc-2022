@@ -1,23 +1,21 @@
 <template>
-        <a :href="`/${slugify(this.category)}/${this.id}`" class="row py-3 border-bottom border-dark text-dark">
-            <div class="col-4">
-                <img :src="`http://127.0.0.1:8000${img}`" class="img-fluid" :alt=title width="300" height="200">
+    <a :href="`/${slugify(this.category)}/${this.id}`" class="row py-3 border-bottom border-dark text-dark">
+        <h5 class="mb-3 fw-bold">{{ title }}</h5>
+        <div class="row">
+            <div class="col-5">
+                <img :src=img class="img-fluid" :alt=title width="200" height="133.33">
             </div>
             <div class="col">
-                <div class="row">
-                    <h5>{{ title }}</h5>
-                </div>
-                <div class="row">
-                    <p>{{ description }}</p>
-                </div>
+                <p>{{ description }}</p>
             </div>
-        </a>
+        </div>
+    </a>
 </template>
-    
+
 <script>
 import myLib from '@/helpers';
 export default {
-    name: 'NewCard',
+    name: 'NewCardSmaller',
     props: {
         img: String,
         title: String,
@@ -31,20 +29,20 @@ export default {
         }
     },
     methods: {
-        slugify(str){
+        slugify(str) {
             return myLib.toSlug(str)
         }
     }
 }
 </script>
-    
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 a {
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     color: #0d6efd !important;
 }
 </style>

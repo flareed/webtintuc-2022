@@ -17,10 +17,13 @@
           <HomeLatestNews />
         </div>
         <div class="col">
-          <HomeCategoryNews section="Thể thao" />
-          <HomeCategoryNews section="Giải trí" />
-          <HomeCategoryNews section="Du lịch" />
-          <HomeCategoryNews section="Số hoá" />
+          <HomeCategoryNews section="Thể thao" id="7" />
+          <HomeCategoryNews section="Thời sự" id="1" />
+          <HomeCategoryNews section="Du lịch" id="10" />
+          <HomeCategoryNews section="Số hoá" id="11" />
+          <HomeCategoryNews section="Môi trường" id="13" />
+          <HomeCategoryNews section="Khoa học" id="5" />
+          <HomeCategoryNews section="Giải trí" id="6" />
         </div>
       </div>
       <div class="mt-4">

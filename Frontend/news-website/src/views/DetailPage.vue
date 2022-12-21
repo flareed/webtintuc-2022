@@ -11,7 +11,7 @@
         <div class="container mt-4 mb-4" style="max-width: 70%">
             <div class="row">
                 <div class="col">
-                    <h6 class="fw-bold text-uppercase">{{ article.tag }}</h6>
+                    <h6 class="fw-bold text-uppercase">{{ article.category }}</h6>
                 </div>
             </div>
             <div class="row mt-4">
@@ -48,7 +48,12 @@
                     </div>
                 </div>
                 <div class="col">
-                    <h6 class="float-end">{{ article.date }}</h6>
+                    <h6 class="float-end">
+                        <div class="fw-bold mb-1" v-if="article.location">{{ article.location }}</div>
+                        <div v-else>---</div>
+                        {{ handleDate(article.date_posted) }}
+                    </h6>
+                    
                 </div>
             </div>
             <div class="row">
@@ -101,8 +106,10 @@ import HomeHeader from '../components/HomeHeader.vue';
 import HomeNavBar from '../components/HomeNavBar.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
 // import NewCard from '@/components/NewCard.vue';
-import articleData from '@/components/store/data_article.json';
+// import articleData from '@/components/store/data_article.json';
 import CommentCard from '@/components/CommentCard.vue';
+import { HTTP } from '../api'
+import myLib from '@/helpers';
 
 export default {
     name: 'DetailPage',
@@ -131,23 +138,37 @@ export default {
                     "content": "She glanced up into the sky to watch the clouds taking shape. First, she saw a dog. Next, it was an elephant. Finally, she saw a giant umbrella and at that moment the rain began to pour.",
                     "like": 0
                 }
-            ]
+            ],
+            article: []
         }
     },
     props: {
         section: { type: String, required: true },
-        name: { type: String, required: true },
+        id: { type: String, required: true },
     },
     methods: {
         onClick() {
             console.log(this.$refs.opinion.value)
+        },
+        handleDate(str) {
+            return myLib.parseDate(str)
         }
     },
-    computed: {
-        article() {
-            return articleData
-        }
-    }
+    // computed: {
+    //     article() {
+    //         return articleData
+    //     }
+    // },
+    created() {
+        HTTP.get('api/articles/' + this.id  +'/')
+            .then(response => {
+                this.article = response.data
+            })
+            .catch(e => {
+                console.log(e)
+                this.$router.push({ name: 'not-found' })
+            })
+    },
 }
 </script>
   
@@ -159,6 +180,11 @@ span :deep(img) {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+span :deep(figcaption) {
+    text-align: center;
+    margin-top: 10px;
 }
 
 span :deep p {
