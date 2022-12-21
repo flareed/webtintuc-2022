@@ -1,7 +1,7 @@
 <template>
-        <a :href="`/${section}/${slugify(this.title)}`" class="row py-3 border-bottom border-dark text-dark">
-            <div class="col-5">
-                <img :src=img class="img-fluid" :alt=title width="200" height="133.33">
+        <a :href="`/${slugify(this.category)}/${this.id}`" class="row py-3 border-bottom border-dark text-dark">
+            <div class="col-4">
+                <img :src="`http://127.0.0.1:8000${img}`" class="img-fluid" :alt=title width="300" height="200">
             </div>
             <div class="col">
                 <div class="row">
@@ -22,10 +22,12 @@ export default {
         img: String,
         title: String,
         description: String,
+        category: String,
+        id: Number
     },
     data() {
         return {
-            section: 'the-gioi',
+            
         }
     },
     methods: {

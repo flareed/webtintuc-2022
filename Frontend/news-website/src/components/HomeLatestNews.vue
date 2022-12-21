@@ -38,7 +38,8 @@ export default {
     created() {
         HTTP.get(`api/articles/`)
             .then(response => {
-                this.news = response.data.results
+                this.news = response.data.results.slice(0, 10)
+                // this.news = this.news.slice(0, 10)
             })
             .catch(e => {
                 console.log(e)

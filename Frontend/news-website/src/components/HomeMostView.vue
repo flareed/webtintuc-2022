@@ -1,81 +1,70 @@
 <template>
-        <h5>Nhiều lượt xem</h5>
+    <h5>Nhiều lượt xem</h5>
+    <div v-if="!isFetching">
         <div class="row">
-            <a :href="`/${sectionSlug(this.articles[0].category)}/${slugify(this.articles[0].title)}`" class="col pe-4 border-end border-dark text-dark">
+            <a :href="`/${sectionSlug(this.news[0].category)}/${this.news[0].id}`"
+                class="col pe-4 border-end border-dark text-dark">
                 <div class="row">
                     <div class="col">
-                        <img :src=this.articles[0].imageTitle class="img-fluid" alt="Girl in a jacket" width="400" height="267">
+                        <img :src="`http://127.0.0.1:8000${this.news[0].img}`" class="img-fluid" :alt="this.news[0].title" width="400"
+                            height="267">
                     </div>
                     <div class="col">
                         <div class="row">
                             <h4>
-                                {{ this.articles[0].title }}
+                                {{ this.news[0].title }}
                             </h4>
                         </div>
                         <div class="row">
                             <p>
-                                {{ this.articles[0].desciption }}
+                                {{ this.news[0].description }}
                             </p>
                         </div>
                         <div class="row">
-                            <b>{{ this.articles[0].category }}</b>
+                            <b>{{ this.news[0].category }}</b>
                         </div>
                     </div>
                 </div>
             </a>
             <div class="col-4">
-                <a :href="`/${sectionSlug(this.articles[1].category)}/${slugify(this.articles[1].title)}`" class="row ps-2 ms-2 border-bottom border-dark text-dark">
+                <a :href="`/${sectionSlug(this.news[1].category)}/${this.news[1].id}`"
+                    class="row ps-2 ms-2 border-bottom border-dark text-dark">
                     <div class="row">
-                        <h5>{{ this.articles[1].title }}</h5>
+                        <h5>{{ this.news[1].title }}</h5>
                     </div>
                     <div class="row">
                         <p>
-                            {{ this.articles[1].desciption }} 
+                            {{ this.news[1].description }}
                         </p>
                     </div>
                 </a>
-                <a :href="`/${sectionSlug(this.articles[2].category)}/${slugify(this.articles[2].title)}`" class="row ps-2 ms-2 mt-3 text-dark">
+                <a :href="`/${sectionSlug(this.news[2].category)}/${this.news[2].id}`"
+                    class="row ps-2 ms-2 mt-3 text-dark">
                     <div class="row">
-                        <h5>{{ this.articles[2].title }}</h5>
+                        <h5>{{ this.news[2].title }}</h5>
                     </div>
                     <div class="row">
                         <p>
-                            {{ this.articles[2].desciption }} 
+                            {{ this.news[2].description }}
                         </p>
                     </div>
                 </a>
             </div>
         </div>
+    </div>
 </template>
     
 <script>
 import sourceData from '@/components/store/data_routes.json'
 import myLib from '@/helpers';
+import { HTTP } from '../api'
 
 export default {
     name: 'HomeMostView',
     data() {
         return {
-            articles: [
-                {
-                    "imageTitle": "https://images.unsplash.com/photo-1668613964763-90d0bd6559f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                    "title": "Lịch trình gợi ý cho người lần đầu đi Hà Giang",
-                    "desciption": "Vũ Phương Anh, 23 tuổi, chia sẻ kinh nghiệm sau khi kết thúc chuyến đi Hà Giang 4 ngày 3 đêm, cuối tháng 10.",
-                    "category": "Du lịch",
-                },
-                {
-                    "imageTitle": "https://images.unsplash.com/photo-1668613964763-90d0bd6559f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                    "title": "Lý do Musk muốn nhanh kiếm tiền từ Twitter",
-                    "desciption": "Tỷ phú Elon Musk áp dụng một loạt thay đổi sau khi trở thành ông chủ Twitter nhằm thúc đẩy hoạt động kiếm tiền của mạng xã hội.",
-                    "category": "Số hoá",
-                },
-                {
-                    "imageTitle": "https://images.unsplash.com/photo-1668613964763-90d0bd6559f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                    "title": "Đánh giá iPhone 14 Pro Max",
-                    "desciption": "iPhone 14 Pro Max có thiết kế cao cấp, thời lượng pin, màn hình và camera tốt, nhưng Dynamic Island và màn hình luôn bật còn nhiều bất tiện.",
-                    "category": "Số hoá",
-                }
-            ],
+            news: [],
+            isFetching: true
         }
     },
     methods: {
@@ -84,10 +73,20 @@ export default {
                 (destination) => destination.name === name
             ).slug;
         },
-        slugify(str){
+        slugify(str) {
             return myLib.toSlug(str)
         }
-    }
+    },
+    created() {
+        HTTP.get(`api/categories/11/articles/`)
+            .then(response => {
+                this.news = response.data
+                this.isFetching = false
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    },
 }
 </script>
     
@@ -97,7 +96,7 @@ a {
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     color: #0d6efd !important
 }
 </style>
