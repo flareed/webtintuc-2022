@@ -6,23 +6,56 @@
     <main>
         <div class="input-style">
             <form action="/search" method="get">
-                <div class="input-group input-group-lg">
-                    <input type="text" name="q" class="form-control search-style" placeholder="Tìm kiếm"
-                        :value="this.query">
-                    <button class="btn btn-outline-secondary" type="submit">
-                        <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-                    </button>
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control search-style" placeholder="Tìm kiếm"
+                                :value="this.query">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="input-group">
+                            <label class="input-group-text" for="inputGroupSelect">Chuyên đề</label>
+                            <select class="form-select" name="category" id="inputGroupSelect">
+                                <option value="0" :selected="store.selectedCategory == 0">Tất cả</option>
+                                <option v-for="item in categories_data" :key="item.name" :value="item.id" :selected="store.selectedCategory == item.id">{{ item.name
+                                }}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
+
         <div class="input-style">
             <div class="row mt-4">
                 <div v-if="!isFetching" class="col">
-                    <div v-for="item in this.news" :key="item.id">
-                        <SearchCard :img="item.img" :title="item.title" :description="item.description"
-                            :category="item.category" :id="item.id" :date="item.date_posted" />
+                    <div v-if="!isEmpty">
+                        <div v-for="item in this.news" :key="item.id">
+                            <NewCard :img="item.img" :title="item.title" :description="item.description"
+                                :category="item.category" :id="item.id" :date="item.date_posted" />
+                        </div>
                     </div>
+                    <div v-else>
+                        <h5>Không tìm thấy kết quả phù hợp</h5>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </main>
@@ -35,35 +68,75 @@
 <script>
 import HomeHeader from '../components/HomeHeader.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
-import SearchCard from '@/components/SearchCard.vue';
+import NewCard from '@/components/NewCard.vue';
+import sourceData from '@/components/store/data_routes.json'
 import { HTTP } from '../api'
+import store from '../components/store/index'
 
 export default {
     name: 'SearchPage',
     components: {
         HomeHeader,
         HomeFooter,
-        SearchCard,
+        NewCard,
     },
     data() {
         return {
             news: [],
             isFetching: true,
+            categories_data: sourceData.categories,
+            isEmpty: false,
+            store
         }
     },
     props: {
         query: { type: String, required: true },
+        category: String,
     },
     created() {
-        console.log(this.query)
-        HTTP.get(`api/articles/?q=${this.query}`)
-            .then(response => {
-                this.news = response.data.results
-                this.isFetching = false
-            })
-            .catch(e => {
-                console.log(e)
-            })
+        store.selectedCategory = parseInt(this.category)
+        console.log(typeof this.categories_data[0].id)
+        console.log(store.selectedCategory)
+        if (typeof this.category !== 'undefined') {
+            if (this.category == '0') {
+                HTTP.get(`api/articles/?q=${this.query}`)
+                    .then(response => {
+                        this.news = response.data.results
+                        this.isFetching = false
+                        if (this.news.length == 0) {
+                            this.isEmpty = true
+                        }
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+            } else {
+                HTTP.get(`api/categories/${this.category}/articles/?q=${this.query}`)
+                    .then(response => {
+                        this.news = response.data
+                        this.isFetching = false
+                        if (this.news.length == 0) {
+                            this.isEmpty = true
+                        }
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+            }
+        } else {
+            HTTP.get(`api/articles/?q=${this.query}`)
+                .then(response => {
+                    this.news = response.data.results
+                    this.isFetching = false
+                    if (this.news.length == 0) {
+                        this.isEmpty = true
+                    }
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        }
+
     },
 }
 </script>

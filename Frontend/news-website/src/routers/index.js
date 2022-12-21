@@ -25,7 +25,7 @@ const routes = [
         path: '/search',
         name: 'Search',
         component: () => import('../views/SearchPage.vue'),
-        props: route => ({ query: route.query.q })
+        props: route => ({ query: route.query.q, category: route.query.category })
     },
     {
         path: '/:section/:id',
