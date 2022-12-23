@@ -8,13 +8,13 @@
     </nav>
 
     <main>
-        <div class="container py-2">
+        <div class="container">
             <div class="row input-style mt-4 border-bottom">
                 <div class="col">
-                    <h1 class="fw-bold">{{ category.name }}</h1>
+                    <h1 class="fw-bold display-4" style="font-family: Dosis">{{ category.name }}</h1>
                 </div>
-                <div class="col-4">
-                    <button type="button" class="btn btn-primary float-end">Nhận thông báo</button>
+                <div class="col-4 position-relative">
+                    <button type="button" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y">Nhận thông báo</button>
                 </div>
             </div>
 

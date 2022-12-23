@@ -7,16 +7,7 @@
         <div class="input-style">
             <form action="/search" method="get">
                 <div class="row">
-                    <div class="col">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control search-style" placeholder="Tìm kiếm"
-                                :value="this.query">
-                            <button class="btn btn-outline-secondary" type="submit">
-                                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-5">
+                    <div class="col-4">
                         <div class="input-group">
                             <label class="input-group-text" for="inputGroupSelect">Chuyên đề</label>
                             <select class="form-select" name="category" id="inputGroupSelect">
@@ -24,6 +15,15 @@
                                 <option v-for="item in categories_data" :key="item.name" :value="item.id" :selected="store.selectedCategory == item.id">{{ item.name
                                 }}</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control search-style" placeholder="Tìm kiếm"
+                                :value="this.query">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+                            </button>
                         </div>
                     </div>
                 </div>

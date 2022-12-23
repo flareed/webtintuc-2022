@@ -1,6 +1,6 @@
 <template>
     <a :href="`/${slugify(this.category)}/${this.id}`" class="row py-3 border-bottom border-dark text-dark">
-        <h5 class="mb-3 fw-bold">{{ title }}</h5>
+        <h5 class="mb-3 title-style">{{ title }}</h5>
         <div class="row">
             <div class="col-5">
                 <img :src=img class="img-fluid" :alt=title width="200" height="133.33">
@@ -43,6 +43,11 @@ a {
 }
 
 a:hover {
-    color: #0d6efd !important;
+    color: #1657b9 !important;
+}
+
+.title-style{
+    font-weight: 600 !important;
+    font-family: Playfair Display;
 }
 </style>

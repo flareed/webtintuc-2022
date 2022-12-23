@@ -1,15 +1,15 @@
 <template>
     <a :href="`/${slugify(this.category)}/${this.id}`" class="row py-4 border-bottom border-dark text-dark">
-        <div class="col-2">
-            <small>{{ handleDate(date) }}</small>
+        <div class="col-2" style="font-size:small">
+            {{ handleDate(date) }}
         </div>
         
         <div class="col">
             <div v-if="!isInSection" class="row">
-                <h6 class="fw-bold text-uppercase">{{ category }}</h6>
+                <h6 class="fw-bold text-uppercase" style="font-family: Dosis">{{ category }}</h6>
             </div>
             <div class="row">
-                <h5>{{ title }}</h5>
+                <h4 class="title-style">{{ title }}</h4>
             </div>
             <div class="row">
                 <p>{{ description }}</p>
@@ -58,7 +58,12 @@ text-decoration: none;
 }
 
 a:hover{
-color: #0d6efd !important;
+    color: #1657b9 !important;
+}
+
+.title-style{
+    font-weight: 600 !important;
+    font-family: Playfair Display;
 }
 
 .cropped {
