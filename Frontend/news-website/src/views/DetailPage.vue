@@ -8,21 +8,21 @@
     </nav>
 
     <main>
-        <div class="container mt-4 mb-4" style="max-width: 70%">
+        <div class="container mt-4 mb-4" style="max-width: 60%">
             <div class="row">
                 <div class="col">
-                    <h6 class="fw-bold text-uppercase">{{ article.category }}</h6>
+                    <h6 class="fw-bold text-uppercase" style="font-family: Dosis">{{ article.category }}</h6>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col">
-                    <h1>{{ article.title }}</h1>
+                    <h1 class="display-3 article-title">{{ article.title }}</h1>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-4" >
                 <div class="col">
                     <span>
-                        <h5><em>{{ article.description }}</em></h5>
+                        <h4 class="article-description"><em>{{ article.description }}</em></h4>
                     </span>
                 </div>
             </div>
@@ -174,8 +174,24 @@ export default {
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.article-title {
+    text-align: center;
+    font-weight: 600 !important;
+    line-height: 80px;
+    color: #212529;
+    font-family: Playfair Display !important;
+}
+
+.article-description {
+    width: 100%;
+    font-weight: 500 !important;
+    color: #212529;
+    font-family: Playfair Display !important;
+}
+
 span :deep(img) {
-    width: 80%;
+    width: 100%;
     /* height: 70%; */
     display: block;
     margin-left: auto;
@@ -187,8 +203,11 @@ span :deep(figcaption) {
     margin-top: 10px;
 }
 
-span :deep p {
-    font-size: 1.1rem;
+span :deep(p) {
+    font-size: 1.3rem;
+    font-family: Roboto;
+    line-height: 29px;
+    color: #343a40;
 }
 </style>
   

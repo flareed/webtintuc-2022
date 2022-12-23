@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid border-top border-bottom border-dark mb-2" ref="navbar"
+    <div class="container-fluid border-bottom border-dark" ref="navbar"
         style="background-color: white !important;">
         <div class="row h-100">
             <div class="col-1 my-auto ms-2">
@@ -9,7 +9,7 @@
                 </a>
             </div>
             <div class="col">
-                <ul class="nav nav-fill">
+                <ul class="nav">
                     <div v-for="item in categories" :key="item.name">
                         <li class="nav-item">
                             <a :href="`/${item.slug}`" class="fw-bold nav-link"
@@ -21,6 +21,8 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="content">
 
     </div>
 </template>
@@ -40,9 +42,9 @@ export default {
     },
     methods: {
         handleScroll(event) {
-            var sticky = this.$refs.navbar.offsetTop
+            // var sticky = this.$refs.navbar.offsetTop
             // console.log(event.target.documentElement.scrollTop)
-            if (event.target.documentElement.scrollTop >= sticky) {
+            if (event.target.documentElement.scrollTop >= 70) {
                 this.$refs.navbar.classList.add("sticky")
             }
             if (event.target.documentElement.scrollTop < 70) {
@@ -67,10 +69,19 @@ a:hover {
     text-decoration: none !important;
 }
 
+.content {
+    padding: 16px;
+}
+
 .sticky {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
+    /* margin-bottom: 50%; */
+}
+
+.sticky+.content {
+    padding-top: 60px;
 }
 </style>

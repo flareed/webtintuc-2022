@@ -43,4 +43,16 @@ exports.parseDate = (time) => {
 	return `${dayOfWeek}, ${day}/${month}/${year}, ${hr}:${min}`
 }
 
+exports.parseDateSmaller = (time) => {
+	let date = new Date(time)
+	let day = date.getDate();
+	let month = date.getMonth() + 1;
+	let year = date.getFullYear();
+
+	let hr = ("0" + date.getHours()).slice(-2);
+	let min = ("0" + date.getMinutes()).slice(-2);
+
+	return `${day}/${month}/${year}, ${hr}:${min}`
+}
+
 export default exports

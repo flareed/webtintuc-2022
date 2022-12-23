@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid pb-2">
+    <div class="container-fluid pb-2 border-bottom border-dark">
         <div class="row px-4">
             <div class="col">
                 <div class="row">
@@ -9,18 +9,20 @@
                     <div>Tin tức hôm nay</div>
                 </div>
             </div>
-            <div class="col-5 text-center">
+            <a href="/" class="col-5 text-center">
                 <img src="../assets/logo_header.png" class="img-fluid" alt="logo">
-            </div>
+            </a>
             <div class="col">
                 <div class="row">
                     <div class="col-8">
-                        <div class="input-group">
-                            <input type="text" class="form-control search-style" placeholder="Tìm kiếm">
-                            <button class="btn btn-outline-secondary" type="button">
-                                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-                            </button>
-                        </div>
+                        <form action="/search" method="get">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control search-style" placeholder="Tìm kiếm">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="col-1">
                         <h4 class="my-1">

@@ -11,7 +11,7 @@
                     </div>
                     <div class="col">
                         <div class="row">
-                            <h4>
+                            <h4 class="title-style">
                                 {{ this.news[0].title }}
                             </h4>
                         </div>
@@ -30,7 +30,7 @@
                 <a :href="`/${sectionSlug(this.news[1].category)}/${this.news[1].id}`"
                     class="row ps-2 ms-2 border-bottom border-dark text-dark">
                     <div class="row">
-                        <h5>{{ this.news[1].title }}</h5>
+                        <h5 class="title-style">{{ this.news[1].title }}</h5>
                     </div>
                     <div class="row">
                         <p>
@@ -41,7 +41,7 @@
                 <a :href="`/${sectionSlug(this.news[2].category)}/${this.news[2].id}`"
                     class="row ps-2 ms-2 mt-3 text-dark">
                     <div class="row">
-                        <h5>{{ this.news[2].title }}</h5>
+                        <h5 class="title-style">{{ this.news[2].title }}</h5>
                     </div>
                     <div class="row">
                         <p>
@@ -97,6 +97,11 @@ a {
 }
 
 a:hover {
-    color: #0d6efd !important
+    color: #1657b9 !important;
+}
+
+.title-style{
+    font-weight: 600 !important;
+    font-family: Playfair Display;
 }
 </style>

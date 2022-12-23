@@ -10,7 +10,7 @@
                     </div>
                     <div class="col">
                         <div class="row">
-                            <h6 class="fw-bold">{{ this.news[0].title }}</h6>
+                            <h6 class="title-style">{{ this.news[0].title }}</h6>
                         </div>
                         <div class="row">
                             <p>{{ this.news[0].description }}</p>
@@ -20,13 +20,13 @@
             </a>
 
             <div class="row h-100 py-3 border-bottom border-dark">
-                <a :href="`/${sectionSlug}/${this.news[1].id}`" class="col text-dark">
+                <a :href="`/${sectionSlug}/${this.news[1].id}`" class="col text-dark subtitle-style">
                     <h6>{{ this.news[1].title }}</h6>
                 </a>
-                <a :href="`/${sectionSlug}/${this.news[2].id}`" class="col border-start border-end text-dark">
+                <a :href="`/${sectionSlug}/${this.news[2].id}`" class="col border-start border-end text-dark subtitle-style">
                     <h6>{{ this.news[2].title }}</h6>
                 </a>
-                <a :href="`/${sectionSlug}/${this.news[3].id}`" class="col text-dark">
+                <a :href="`/${sectionSlug}/${this.news[3].id}`" class="col text-dark subtitle-style">
                     <h6>{{ this.news[3].title }}</h6>
                 </a>
             </div>
@@ -86,6 +86,15 @@ a {
 }
 
 a:hover {
-    color: #0d6efd !important
+    color: #1657b9 !important;
+}
+
+.title-style{
+    font-weight: 600 !important;
+    font-family: Playfair Display;
+}
+
+.subtitle-style{
+    font-family: Playfair Display;
 }
 </style>

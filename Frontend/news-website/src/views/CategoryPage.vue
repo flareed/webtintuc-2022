@@ -4,24 +4,26 @@
     </header>
 
     <nav>
-        <HomeNavBar :slug="category.slug"/>
+        <HomeNavBar :slug="category.slug" />
     </nav>
 
     <main>
-        <div class="container py-2">
-            <div class="row">
+        <div class="container">
+            <div class="row input-style mt-4 border-bottom">
                 <div class="col">
-                    <h3>{{ category.name }}</h3>
+                    <h1 class="fw-bold display-4" style="font-family: Dosis">{{ category.name }}</h1>
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-primary">Đăng ký nhận thông báo</button>
+                <div class="col-4 position-relative">
+                    <button type="button" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y">Nhận thông báo</button>
                 </div>
             </div>
-            
-            <div class="row mt-4">
-                <div v-if="!isFetching" class="col-8">
+
+            <div class="row mt-4 input-style">
+                <div v-if="!isFetching" class="col">
                     <div v-for="item in this.news" :key="item.id">
-                        <NewCard :img="item.img" :title="item.title" :description="item.description" :category="item.category" :id="item.id" />
+                        <NewCard :img="`http://127.0.0.1:8000${item.img}`" :title="item.title"
+                            :description="item.description" :category="item.category" :id="item.id"
+                            :date="item.date_posted" :isInSection="true"/>
                     </div>
                 </div>
             </div>
@@ -51,9 +53,6 @@ export default {
     },
     data() {
         return {
-            // img: "https://images.unsplash.com/photo-1668405409882-0b3a8b6fc912?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-            // title: "Musk dự kiến sa thải gần 4.000 nhân viên Twitter",
-            // description: "Elon Musk được cho là đang chuẩn bị cho việc sa thải một nửa số nhân viên Twitter ngay trong tuần này."
             news: [],
             isFetching: true,
         }
@@ -84,6 +83,9 @@ export default {
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.input-style {
+    margin-left: 10%;
+    margin-right: 10%;
+}
 </style>
   

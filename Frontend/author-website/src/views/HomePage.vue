@@ -47,7 +47,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Submit thành công
+                            <div v-if="success">
+                                Submit thành công
+                            </div>
+                            <div v-else>
+                                Submit không thành công, có lỗi xảy ra
+                            </div>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -87,7 +93,8 @@ export default {
             author: '',
             location: '',
             tag: '',
-            categories: []
+            categories: [],
+            success: true
         };
     },
     methods: {
@@ -108,19 +115,6 @@ export default {
             formData.append('location', this.location);
             formData.append('img', this.image);
 
-            // let article = {
-            //     "category": categoryId,
-            //     "author": this.author,
-            //     "title": this.title,
-            //     "description": this.description,
-            //     "content": this.editorData,
-            //     "location": this.location,
-            //     "img": this.image
-            // }
-            // for (const value of formData.values()) {
-            //     console.log(value);
-            // }
-
             HTTP.post(`/api/articles/`,
                 formData
             ,{
@@ -132,6 +126,7 @@ export default {
                    console.log(response)
                 })
                 .catch(e => {
+                    this.success = false
                     console.log(e.response.data)
                 })
 
@@ -158,6 +153,7 @@ export default {
                     })
             })
             .catch(e => {
+                this.success = false
                 console.log(e)
             })
     },
