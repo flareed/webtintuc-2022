@@ -28,7 +28,7 @@
 </template>
     
 <script>
-import sourceData from '../components/store/data_routes.json'
+import sourceData from '../store/data_routes.json'
 
 export default {
     name: 'HomeNavBar',

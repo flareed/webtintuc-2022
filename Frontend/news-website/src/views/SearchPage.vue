@@ -69,9 +69,9 @@
 import HomeHeader from '../components/HomeHeader.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
 import NewCard from '@/components/NewCard.vue';
-import sourceData from '@/components/store/data_routes.json'
+import sourceData from '@/store/data_routes.json'
 import { HTTP } from '../api'
-import store from '../components/store/index'
+import store from '../store/index'
 
 export default {
     name: 'SearchPage',

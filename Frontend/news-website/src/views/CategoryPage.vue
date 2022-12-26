@@ -40,7 +40,7 @@ import HomeHeader from '../components/HomeHeader.vue';
 import HomeNavBar from '../components/HomeNavBar.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
 import NewCard from '@/components/NewCard.vue';
-import sourceData from '@/components/store/data_routes.json'
+import sourceData from '@/store/data_routes.json'
 import { HTTP } from '../api'
 
 export default {
