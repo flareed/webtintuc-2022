@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import HomePage from '../views/HomePage.vue';
-import sourceData from '../components/store/data_routes.json'
+import sourceData from '../store/data_routes.json'
 // import { HTTP } from '../api'
 
 const routes = [

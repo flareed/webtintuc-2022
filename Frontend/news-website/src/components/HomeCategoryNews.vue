@@ -36,7 +36,7 @@
 </template>
     
 <script>
-import sourceData from '@/components/store/data_routes.json'
+import sourceData from '@/store/data_routes.json'
 import myLib from '@/helpers';
 import { HTTP } from '../api'
 

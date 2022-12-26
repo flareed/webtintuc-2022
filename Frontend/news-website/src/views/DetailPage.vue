@@ -105,8 +105,6 @@
 import HomeHeader from '../components/HomeHeader.vue';
 import HomeNavBar from '../components/HomeNavBar.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
-// import NewCard from '@/components/NewCard.vue';
-// import articleData from '@/components/store/data_article.json';
 import CommentCard from '@/components/CommentCard.vue';
 import { HTTP } from '../api'
 import myLib from '@/helpers';
