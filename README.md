@@ -20,8 +20,8 @@
 
 <b>Bước 2</b>: Thêm data vào csdl ([data](https://studenthcmusedu-my.sharepoint.com/:f:/g/personal/20120393_student_hcmus_edu_vn/EvZ8g_ChoipJgAhPHWTNiNQBCwMzY6MtSdjWditmw1PV-w?e=6GmlhO), link hướng dẫn [import csv file to mysql table](https://www.mysqltutorial.org/import-csv-file-mysql-table/))
 
-- Dữ liệu `articles_data.csv` của table myapp_article
-- Dữ liệu `categories_data.csv` của table myapp_category
+- Dữ liệu `articles_data.csv` của table `myapp_article`
+- Dữ liệu `categories_data.csv` của table `myapp_category`
 
 <b>Bước 3</b>: Chạy Frontend `news-website`
 ```
