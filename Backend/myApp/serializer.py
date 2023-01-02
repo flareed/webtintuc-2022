@@ -50,7 +50,11 @@ class ArticleSerializer(ModelSerializer):
         
     #     return request.build_absolute_uri(path)
     
-    category = serializers.StringRelatedField()
+    def to_representation(self, instance):
+        rep = super(ArticleSerializer,self).to_representation(instance)
+        rep['category'] = instance.category.name
+        return rep
+    
     class Meta:
         model = Article
         fields = ["id","category","author","title","description","content","location","date_posted","img"]
