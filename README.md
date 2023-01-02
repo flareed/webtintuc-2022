@@ -23,7 +23,8 @@ Require: <b>npm, vuejs</b>
 
 ### Thứ tự các bước
 
-- Bước 1: Chạy Backend
-- Bước 2: Chạy Frontend news-website trên port khác (ví dụ: npm run serve -- --port 3000)
+- Bước 1: Chạy Backend (theo hướng dẫn readme)
+- Bước 2: Thêm data vào csdl ([data](https://studenthcmusedu-my.sharepoint.com/:f:/g/personal/20120393_student_hcmus_edu_vn/EvZ8g_ChoipJgAhPHWTNiNQBCwMzY6MtSdjWditmw1PV-w?e=6GmlhO), link hướng dẫn [import csv file to mysql table](https://www.mysqltutorial.org/import-csv-file-mysql-table/))
+- Bước 2: Chạy Frontend news-website (theo hướng dẫn readme)
 - Bước 3: Chạy Frontend author-website trên port khác
-- Bước 4: Do chưa có dữ liệu nên cần thêm data article thông qua author-website
+- Bước 4: Nếu cần thì thêm data article thông qua author-website
