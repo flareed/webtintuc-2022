@@ -1,0 +1,18 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "username": "User1",
+            "email": "user1@gmail.com",
+            "password": "12345",
+            "subcribe": []
+        },
+        {
+            "id": 2,
+            "username": "User2",
+            "email": "user2@gmail.com",
+            "password": "12345",
+            "subcribe": []
+        }
+    ]
+}
