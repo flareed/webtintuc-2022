@@ -14,7 +14,7 @@
 ## Cách chạy project
 
 ### Frontend
-Require: <b>npm, vuejs
+Require: <b>npm, vuejs</b>
 
 [Readme](/Frontend/news-website/README.md)
 
