@@ -1,5 +1,15 @@
 import { reactive } from "vue";
 
-export default reactive({
-    selectedCategory: 0
-});
+export const store = reactive({
+    selectedCategory: 0,
+    currentUser: {},
+    isAuthenticate: false,
+    login(data){
+        this.currentUser = data;
+        this.isAuthenticate = true;
+    },
+    logout(){
+        this.currentUser = {};
+        this.isAuthenticate = false;
+    },
+})

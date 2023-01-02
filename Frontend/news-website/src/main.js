@@ -18,9 +18,12 @@ import {faShareFromSquare, faBookmark, faComment} from '@fortawesome/free-regula
 /* add icons to the library */
 library.add(faUserSecret, faCircleUser, faMagnifyingGlass, faList, faFacebook, faTwitter, faYoutube, faHouse, faShareFromSquare, faBookmark, faComment, faFeather, faThumbsUp)
 
-createApp(App)
+let app = createApp(App)
+
+app
 .component('font-awesome-icon', FontAwesomeIcon)
 .use(router)
 .mount('#app')
+
 
 // import "bootstrap/dist/js/bootstrap.js"

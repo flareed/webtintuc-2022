@@ -30,7 +30,33 @@
                         </h4>
                     </div>
                     <div class="col my-auto">
-                        <a class="text-dark" href="/login">Đăng nhập</a>
+                        <div v-if="this.isAuthenticate" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight">
+                            {{ currentUser.username }}
+                        </div>
+                        <div v-else>
+                            <a class="text-dark" href="/login">Đăng nhập</a>
+                        </div>
+                    </div>
+
+                    <div v-if="this.isAuthenticate" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                        aria-labelledby="offcanvasRightLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasRightLabel">Thông tin cá nhân</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="border-bottom">
+                                Email
+                            </div>
+                            <h6 class="fw-bold mt-2 mb-4">{{ currentUser.email }}</h6>
+                            <div class="border-bottom">
+                                Tên người dùng
+                            </div>
+                            <h6 class="fw-bold mt-2">{{ currentUser.username }}</h6>
+                            <a href="/" type="button" class="btn btn-dark mt-5" @click="onLogout()">Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,9 +65,17 @@
 </template>
     
 <script>
+import { store } from '../store/index'
+import users from '@/store/users.json'
 
 export default {
     name: 'HomeHeader',
+    data() {
+        return {
+            store,
+            isAuthenticate: localStorage.getItem('isAuthenticate'),
+        }
+    },
     computed: {
         getDate() {
             const date = new Date();
@@ -55,6 +89,18 @@ export default {
 
             let currentDate = `${dayOfWeek}, ${day}/${month}/${year}`
             return currentDate
+        },
+        currentUser() {
+            let id = localStorage.getItem("currentId")
+            return users.data.find(
+                (user) => user.id === parseInt(id)
+            );
+        }
+    },
+    methods: {
+        onLogout(){
+            // store.logout()
+            localStorage.clear();
         }
     }
 }

@@ -9,12 +9,25 @@
 
     <main>
         <div class="container">
+            <h6 v-if="!this.isAuthenticate" class="mt-4 alert alert-secondary" role="alert" style="text-align: center;">
+                Hãy đăng nhập để có thể đăng ký nhận thông báo từ mục {{ category.name }}
+            </h6>
             <div class="row input-style mt-4 border-bottom">
                 <div class="col">
                     <h1 class="fw-bold display-4" style="font-family: Dosis">{{ category.name }}</h1>
                 </div>
                 <div class="col-4 position-relative">
-                    <button type="button" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y">Nhận thông báo</button>
+                    <div v-if="this.isAuthenticate">
+                        <div v-if="isSub">
+                            <button type="button" class="btn btn-success position-absolute top-50 end-0 translate-middle-y" @click="onSelect()" disabled>Đã nhận thông báo</button>
+                        </div>
+                        <div v-else>
+                            <button type="button" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y" @click="onSelect()">Nhận thông báo</button>
+                        </div>
+                    </div>
+                    <div v-else>
+                        <button type="button" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y" @click="onSelect()" disabled>Nhận thông báo</button>
+                    </div>
                 </div>
             </div>
 
@@ -42,6 +55,8 @@ import HomeFooter from '@/components/HomeFooter.vue';
 import NewCard from '@/components/NewCard.vue';
 import sourceData from '@/store/data_routes.json'
 import { HTTP } from '../api'
+import { store } from '@/store/index'
+import users from '@/store/users.json'
 
 export default {
     name: 'CategoryPage',
@@ -55,6 +70,8 @@ export default {
         return {
             news: [],
             isFetching: true,
+            store,
+            isAuthenticate: localStorage.getItem('isAuthenticate'),
         }
     },
     props: {
@@ -66,9 +83,19 @@ export default {
             return sourceData.categories.find(
                 (destination) => destination.slug === this.section
             );
+        },
+        currentUser() {
+            let id = localStorage.getItem("currentId")
+            return users.data.find(
+                (user) => user.id === parseInt(id)
+            );
+        },
+        isSub(){
+            return this.currentUser.subcribe.includes(this.category.id)
         }
     },
     created() {
+        console.log(this.currentUser)
         HTTP.get(`api/categories/` + this.category.id + `/articles/`)
             .then(response => {
                 this.news = response.data
@@ -78,6 +105,13 @@ export default {
                 console.log(e)
             })
     },
+    methods: {
+        onSelect(){
+            if (this.isAuthenticate){
+                this.currentUser.subcribe.push(this.category.id)
+            }
+        }
+    }
 }
 </script>
   
