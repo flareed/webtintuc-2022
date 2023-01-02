@@ -20,3 +20,10 @@ Require: <b>npm, vuejs
 
 ### Backend
 [Readme](/Backend/Readme-Backend.md)
+
+### Thứ tự các bước
+
+- Bước 1: Chạy Backend
+- Bước 2: Chạy Frontend news-website trên port khác (ví dụ: npm run serve -- --port 3000)
+- Bước 3: Chạy Frontend author-website trên port khác
+- Bước 4: Do chưa có dữ liệu nên cần thêm data article thông qua author-website
