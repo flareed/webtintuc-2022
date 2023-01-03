@@ -64,7 +64,7 @@ py manage.py makemigrations myApp
 py manage.py migrate
 ```
 
-- Thêm data vào csdl ([data](https://studenthcmusedu-my.sharepoint.com/:f:/g/personal/20120393_student_hcmus_edu_vn/EvZ8g_ChoipJgAhPHWTNiNQBCwMzY6MtSdjWditmw1PV-w?e=6GmlhO), link hướng dẫn [import csv file to mysql table](https://www.mysqltutorial.org/import-csv-file-mysql-table/))
+- Thêm data vào csdl ([data.sql](https://studenthcmusedu-my.sharepoint.com/:u:/g/personal/20120393_student_hcmus_edu_vn/EYHTs2KvJ_NHjPyPyx7O3WUBOjBcBop3aR5uKjHGv4Wu0Q?e=5u1jOZ))
 
 - Cuối cùng chạy lệnh `python manage.py runserver` trên terminal vscode để chạy server (mặc định ở port 8000)
 
@@ -83,5 +83,7 @@ npm run serve -- --port 3000 \\có thể thay đổi port
 npm install \\chạy lệnh này lần đầu tiên khi clone project về, lần thứ 2 không cần chạy nữa
 npm run serve -- --port 4000 \\có thể thay đổi port
 ```
+
+**Note**: Cài đặt thêm [extension](https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) này nếu trình duyệt chặn việc call API
 
 ### Bước 4: Nếu cần thì thêm data article thông qua `author-website`
