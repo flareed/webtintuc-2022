@@ -13,7 +13,7 @@
 
 ## Cài đặt và chạy project
 
-<b>Bước 0</b>: Cài đặt theo thứ tự: `npm, node.js` ([link](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)) -> `vue` ([link](https://vi.vuejs.org/v2/guide/installation.html#NPM)) -> `django rest framework`
+<b>Bước 0</b>: Cài đặt theo thứ tự: `npm, node.js` ([link](https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac)) -> `vue` ([link](https://vi.vuejs.org/v2/guide/installation.html#NPM)) -> `django rest framework`
 
 <b>Bước 1</b>: Chạy Backend (theo hướng dẫn [Readme](/Backend/Readme-Backend.md))
 - Backend sau khi chạy sẽ ở port 8000 nên khi chạy frontend sẽ chọn port khác 8000
