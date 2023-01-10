@@ -80,7 +80,7 @@ export default {
     created() {
         HTTP.get(`api/categories/11/articles/`)
             .then(response => {
-                this.news = response.data
+                this.news = response.data.reverse()
                 this.isFetching = false
             })
             .catch(e => {

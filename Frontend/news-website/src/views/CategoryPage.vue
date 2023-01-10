@@ -98,7 +98,7 @@ export default {
         console.log(this.currentUser)
         HTTP.get(`api/categories/` + this.category.id + `/articles/`)
             .then(response => {
-                this.news = response.data
+                this.news = response.data.reverse()
                 this.isFetching = false
             })
             .catch(e => {
