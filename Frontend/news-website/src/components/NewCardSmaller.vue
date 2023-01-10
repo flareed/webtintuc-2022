@@ -3,7 +3,7 @@
         <h5 class="mb-3 title-style">{{ title }}</h5>
         <div class="row">
             <div class="col-5">
-                <img :src=img class="img-fluid" :alt=title width="200" height="133.33">
+                <img :src=img class="img-fluid cropped" :alt=title width="200" height="133.33">
             </div>
             <div class="col">
                 <p>{{ description }}</p>
@@ -49,5 +49,12 @@ a:hover {
 .title-style{
     font-weight: 600 !important;
     font-family: Playfair Display;
+}
+
+.cropped {
+    width: 230px !important; 
+    height: 153px !important; 
+    overflow: hidden !important;
+    object-fit: cover;
 }
 </style>

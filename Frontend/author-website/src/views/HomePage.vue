@@ -127,7 +127,7 @@ export default {
                 })
                 .catch(e => {
                     this.success = false
-                    console.log(e.response.data)
+                    console.log(e)
                 })
 
             this.title = ''

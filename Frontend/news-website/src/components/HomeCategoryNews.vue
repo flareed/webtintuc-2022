@@ -5,7 +5,7 @@
             <a :href="`/${sectionSlug}/${this.news[0].id}`" class="text-dark">
                 <div class="row py-3 border-bottom">
                     <div class="col-5">
-                        <img :src="`http://127.0.0.1:8000${this.news[0].img}`" class="img-fluid"
+                        <img :src="`http://127.0.0.1:8000${this.news[0].img}`" class="img-fluid cropped"
                             :alt="this.news[0].title" width="200" height="133.33">
                     </div>
                     <div class="col">
@@ -69,7 +69,7 @@ export default {
     created() {
         HTTP.get(`api/categories/` + this.id + `/articles/`)
             .then(response => {
-                this.news = response.data
+                this.news = response.data.reverse()
                 this.isFetching = false
             })
             .catch(e => {
@@ -96,5 +96,12 @@ a:hover {
 
 .subtitle-style{
     font-family: Playfair Display;
+}
+
+.cropped {
+    width: 230px !important; 
+    height: 153px !important; 
+    overflow: hidden !important;
+    object-fit: cover;
 }
 </style>

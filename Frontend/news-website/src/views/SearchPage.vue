@@ -12,8 +12,10 @@
                             <label class="input-group-text" for="inputGroupSelect">Chuyên đề</label>
                             <select class="form-select" name="category" id="inputGroupSelect">
                                 <option value="0" :selected="store.selectedCategory == 0">Tất cả</option>
-                                <option v-for="item in categories_data" :key="item.name" :value="item.id" :selected="store.selectedCategory == item.id">{{ item.name
-                                }}</option>
+                                <option v-for="item in categories_data" :key="item.name" :value="item.id"
+                                    :selected="store.selectedCategory == item.id">{{
+                                        item.name
+                                    }}</option>
                             </select>
                         </div>
                     </div>
@@ -34,10 +36,19 @@
             <div class="row mt-4">
                 <div v-if="!isFetching" class="col">
                     <div v-if="!isEmpty">
-                        <div v-for="item in this.news" :key="item.id">
-                            <NewCard :img="item.img" :title="item.title" :description="item.description"
-                                :category="item.category" :id="item.id" :date="item.date_posted" />
+                        <div v-if="this.change">
+                            <div v-for="item in this.news" :key="item.id">
+                                <NewCard :img="`http://127.0.0.1:8000${item.img}`" :title="item.title" :description="item.description"
+                                    :category="item.category" :id="item.id" :date="item.date_posted" />
+                            </div>
                         </div>
+                        <div v-else>
+                            <div v-for="item in this.news" :key="item.id">
+                                <NewCard :img="item.img" :title="item.title" :description="item.description"
+                                    :category="item.category" :id="item.id" :date="item.date_posted" />
+                            </div>
+                        </div>
+
                     </div>
                     <div v-else>
                         <h5>Không tìm thấy kết quả phù hợp</h5>
@@ -64,14 +75,14 @@
         <HomeFooter />
     </footer>
 </template>
-  
+
 <script>
 import HomeHeader from '../components/HomeHeader.vue';
 import HomeFooter from '@/components/HomeFooter.vue';
 import NewCard from '@/components/NewCard.vue';
 import sourceData from '@/store/data_routes.json'
 import { HTTP } from '../api'
-import store from '../store/index'
+import { store } from '../store/index'
 
 export default {
     name: 'SearchPage',
@@ -86,7 +97,8 @@ export default {
             isFetching: true,
             categories_data: sourceData.categories,
             isEmpty: false,
-            store
+            store,
+            change: false
         }
     },
     props: {
@@ -99,6 +111,7 @@ export default {
         console.log(store.selectedCategory)
         if (typeof this.category !== 'undefined') {
             if (this.category == '0') {
+                this.change = false
                 HTTP.get(`api/articles/?q=${this.query}`)
                     .then(response => {
                         this.news = response.data.results
@@ -111,6 +124,7 @@ export default {
                         console.log(e)
                     })
             } else {
+                this.change = true
                 HTTP.get(`api/categories/${this.category}/articles/?q=${this.query}`)
                     .then(response => {
                         this.news = response.data
@@ -124,6 +138,7 @@ export default {
                     })
             }
         } else {
+            this.change = false
             HTTP.get(`api/articles/?q=${this.query}`)
                 .then(response => {
                     this.news = response.data.results
@@ -140,8 +155,8 @@ export default {
     },
 }
 </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .input-style {
     margin-top: 20px;
@@ -149,4 +164,3 @@ export default {
     margin-right: 20%;
 }
 </style>
-  
